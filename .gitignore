@@ -1,0 +1,9 @@
+# Zola build directory
+public/
+
+# Sass cache
+.sass-cache/
+
+# OS-specific files
+.DS_Store
+Thumbs.db

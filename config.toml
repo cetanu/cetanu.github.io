@@ -1,0 +1,47 @@
+title = "Vasilios Syrakis"
+description = "A simple blog made with Zola and Duckquill"
+base_url = "https://cetanu.github.io"
+theme = "duckquill"
+
+compile_sass = true
+minify_html = true
+build_search_index = true
+generate_feeds = true
+author = "Vasilios Syrakis"
+
+taxonomies = [{ name = "tags", feed = true }]
+
+[search]
+index_format = "fuse_json"
+
+[markdown]
+smart_punctuation = true
+bottom_footnotes = true
+github_alerts = true
+
+[markdown.highlighting]
+theme = "gruvbox-dark-hard"
+
+[extra]
+emoji_favicon = "🌞"
+accent_color = "goldenrod"
+show_reading_time = true
+show_share_button = true
+
+[extra.nav]
+show_feed = true
+show_theme_switcher = true
+links = [
+	{ url = "@/blog/_index.md", name = "Blog" },
+    #{ url = "tags", name = "Tags" }
+]
+
+[extra.footer]
+show_copyright = true
+show_powered_by = true
+links = [
+	{ url = "https://github.com/cetanu", name = "GitHub" },
+    { url = "https://www.linkedin.com/in/vsyrakis", name = "LinkedIn" },
+	{ url = "/key.txt", name = "PGP Key" },
+	{ url = "/cv.pdf", name = "CV" },
+]
