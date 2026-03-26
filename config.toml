@@ -27,10 +27,9 @@ emoji_favicon = "🌞"
 accent_color = "goldenrod"
 show_reading_time = true
 show_share_button = true
+default_theme = "dark"
 
 [extra.nav]
-show_feed = true
-show_theme_switcher = true
 links = [
 	{ url = "@/blog/_index.md", name = "Blog" },
     #{ url = "tags", name = "Tags" }

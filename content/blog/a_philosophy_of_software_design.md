@@ -137,8 +137,8 @@ purely addresses an immediate need and nothing else.
 
 ## Closing thought
 
-As painful as it may be to hear to an engineers mind, there is a part of
+As painful as it may be for an engineer's mind to hear, there is a part of
 software that will probably always be somewhat of an art. I guess what matters
-at the end of the day is whether you can lower the volume of the inner-critic
+at the end of the day is whether you can lower the volume of the inner critic
 just enough to be proud of the way you solved problems, even if they weren't
 perfect.
