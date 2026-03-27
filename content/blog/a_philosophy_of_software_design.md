@@ -16,14 +16,16 @@ This is probably obvious to anyone who has worked on software in any serious
 capacity, but (unless you're vibe-coding) complexity doesn't just show up in a
 single pull-request.
 
-It's the "Boiling Frog" problem.  
+It's the "Boiling Frog" problem, except you're not the frog, you're the chef...  
 If we increase the temperature by just one degree, surely it's not that bad,
-right?
+right?  
+This is how we justify adding complexity to ourselves when we say "it works for
+now, I'll clean it up later" on a pull-request.
 
 The incremental quality of complexity is what makes it so insidious, because
-it's so easy to trade a small bit of complexity to get something shipped. You
+it's so easy to trade a small bit of complexity to get something delivered. You
 can even continue to make that trade-off, again and again, for years. Who cares
-if an abstraction leaks a little bit, as long as it deals with this edge case
+if an abstraction leaks a little bit, as long as I can fix up this edge case
 right now?
 
 It's hard to pinpoint the exact moment when things become sluggish, hard to
@@ -32,21 +34,31 @@ because there's no exact moment.
 Just like how a frog doesn't suddenly start boiling when the water goes from
 99°C to 100°C.
 
+#### It's shared discipline, not a technical challenge
+
 I might be totally wrong on this, but I get a general sense that when people
 think about complexity, the focus is on technical decisions that get made over
-time.  
-I believe it's more pragmatic to shift this perception so that the focus is
-on person-to-person interactions - the root of the problem.  
-When a reviewer fails to stand their ground, complexity is welcomed in. This is
-where it gets tricky, because often you're standing against a peer who you
-trust, who means well, but who might be too busy to spend the extra time to
-come up with a design that doesn't attach one more tiny anchor to the codebase.
+time. It almost implies that you can solve complexity all by yourself if you
+just work hard enough.
+
+We work with other people. I believe it's more pragmatic to shift this
+perception so that the focus is on person-to-person interactions - which I
+assert is where the problem arises.
+
+When a reviewer fails to stand their ground, complexity is welcomed in. This
+can be tricky, because often you're standing against a peer who you trust, who
+means well, but who might be too busy to spend the extra time to come up with a
+design that doesn't attach one more tiny anchor to the codebase.
 
 I comfort myself by thinking that nobody intentionally adds complexity. They
 can't see a better way, or maybe they didn't ask themselves if there could be a
 better design. Thinking takes energy and I don't blame anyone for taking the
 path of least resistance to get their work done. Perhaps what we need is better
 ways to measure complexity, so that we can reward its reduction.
+
+For people working solo, you are both the author and reviewer. If you aren't
+trying to see your own work from a different perspective, then your "reviewer"
+persona is effectively rubber-stamping the work, shrugging, and walking away.
 
 ### Abstractions are about hiding unnecessary details
 
@@ -62,10 +74,8 @@ cognitive requirement towards making a balanced decision.
 
 You can't open a book and have it tell you how to make the right abstraction.
 You just have to fail, walk into a mess, learn from the mess, and make the next
-project better, only to fall into another mess.
-
-I suppose in some way, this is the essence of "design". It's the thing that
-makes software seem more like art than science at times.
+project better, only to fall into another mess. A mess that grows as it feeds
+on entropy and junior developers.
 
 ### Deep modules are simpler than shallow modules
 
@@ -87,16 +97,29 @@ of the arguments passed in are very similar.
 
 ### General-purpose code is simpler than special-cased code
 
-First, what exactly is the difference between the two?  
+What exactly is the difference between the two?  
 General purpose code solve a class of problems. Special case code solves one problem.
 
 Example:
 * Special case: A function that adds the `Authorization` request header with a particular value
 * General purpose: A function that adds a request header, with a given key and value.
 
+Special cases pop up in codebases after their initial design has been
+implemented, a bunch of users have been onboarded, it's operating fine, but one
+particular (and important) user needs it to do something that wasn't in the
+original design. This is expected in software, and rigidity isn't a good
+response.
+
+If you immediately know how to change the system so that their particular need
+is solved as a general case it's a clear win, but this doesn't seem to be how
+things go in most cases. Instead, it takes painful thinking to determine what
+needs to be rearranged, migrated, and mutated, in order for the special case to
+be handled in such a way that it doesn't require someone to carve out time from
+their day to maintain it.
+
 ## Philosophy, not Science
 
-I alluded to a particular theme that seems to be common across the above concepts.
+There is a particular theme that seems to be common across the above concepts.
 
 * What makes a good abstraction?
 * How deep should a module be?
@@ -108,8 +131,8 @@ The fundamental question being wrestled with is "Where do I draw the boundary?"
 and the answer is different from wherever you are standing.
 
 It's the human factors that help answer this question. How much cognitive load
-can the reader bear? How often will I have to change the codebase? A compiler
-or linter can't answer these questions. It requires a person to draw a
+can the user or reader bear? How often will I have to change the codebase? A
+compiler or linter can't answer these questions. It requires a person to draw a
 subjective line in the sand and then defend it.
 
 ### The element of "Taste"
@@ -135,10 +158,16 @@ business domain, or when you provide a neat general-purpose interface across an
 entire system. You might be creating a bad design when you add logic that
 purely addresses an immediate need and nothing else.
 
-## Closing thought
+## My closing thought
 
-As painful as it may be for an engineer's mind to hear, there is a part of
-software that will probably always be somewhat of an art. I guess what matters
-at the end of the day is whether you can lower the volume of the inner critic
-just enough to be proud of the way you solved problems, even if they weren't
-perfect.
+Writing this page made me realise that these problems that I found
+unapproachable - how to decide where to draw the line - are simply the way
+things are. It's the essence of design.
+
+Just like other art forms, you can practice, fail, learn, and improve, but
+there will always be some people that either love or hate the art that you
+created.
+
+Often that person is your own self. The inner-critic looks at the past and is
+ashamed of mistakes. I choose to forgive myself for the imperfections and focus
+on the parts that I'm proud of.
