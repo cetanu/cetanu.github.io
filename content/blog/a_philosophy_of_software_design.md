@@ -1,6 +1,13 @@
 +++
 title = "A Philosophy of Software Design"
 date = 2026-03-25
+template = "article.html"
+
+[taxonomies]
+tags = ["software", "architecture", "design"]
+
+[extra]
+go_to_top = true
 +++
 
 Today I finished reading the book, "A Philosophy of Software Design", by John

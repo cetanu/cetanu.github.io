@@ -1,6 +1,13 @@
 +++
 title = "Profit or Poverty: NUMA"
 date = 2026-04-17
+template = "article.html"
+
+[taxonomies]
+tags = ["hft", "performance", "low-latency"]
+
+[extra]
+go_to_top = true
 +++
 
 While modern software tries to hide hardware complexity behind abstractions,
