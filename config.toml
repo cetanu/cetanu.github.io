@@ -32,6 +32,7 @@ default_theme = "dark"
 [extra.nav]
 links = [
 	{ url = "@/blog/_index.md", name = "Blog" },
+	{ url = "@/faq.md", name = "FAQ" },
     #{ url = "tags", name = "Tags" }
 ]
 
