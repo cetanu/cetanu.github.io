@@ -40,8 +40,9 @@ links = [
 show_copyright = true
 show_powered_by = true
 links = [
-	{ url = "https://github.com/cetanu", name = "GitHub" },
-    { url = "https://www.linkedin.com/in/vsyrakis", name = "LinkedIn" },
-	{ url = "/key.txt", name = "PGP Key" },
-	{ url = "/cv.pdf", name = "CV" },
+    { name = "YouTube",  url = "https://youtube.com/@vsyrakis" },
+	{ name = "GitHub",   url = "https://github.com/cetanu" },
+    { name = "LinkedIn", url = "https://www.linkedin.com/in/vsyrakis" },
+	{ name = "PGP Key",  url = "/key.txt", },
+	{ name = "CV",       url = "/cv.pdf" },
 ]
