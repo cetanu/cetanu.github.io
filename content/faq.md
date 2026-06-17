@@ -29,3 +29,8 @@ My mouse is a [Steelseries Rival 3 Gen 2](https://steelseries.com/en-au/gaming-m
 
 #### What glasses are you wearing?
 Ra Optics - Sol [Daylight](https://raoptics.com/products/sol-x-ra-daylight) & [Sunset](https://raoptics.com/products/sol-x-ra-sunset)
+
+
+#### What is your Neovim theme?
+
+https://github.com/sainnhe/edge
