@@ -19,6 +19,8 @@ My mouse is a [Steelseries Rival 3 Gen 2](https://steelseries.com/en-au/gaming-m
 * GPU: AMD RX 9070 XT
 * RAM: Klevv 32GB DDR5 6000Mhz CL30
 * Mainboard: Gigabyte X870 AORUS ELITE
+* Microphone: Shure MV7+
+* Camera: Elgato Facecam 4K
 
 
 #### What Operating System / Linux Distribution do you use?
