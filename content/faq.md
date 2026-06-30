@@ -15,16 +15,14 @@ My mouse is a [Steelseries Rival 3 Gen 2](https://steelseries.com/en-au/gaming-m
 
 #### What are your PC specs?
 * Display: Samsung Odyssey G7
-* CPU: Intel i7-9700K
-* CPU cooler: NZXT Kraken X62
-* GPU: Nvidia RTX 2080 SUPER
-* RAM: Corsair Vengeance 32GB DDR4 3200MHz 
-* Mainboard: MSI MPG Z390
-* PSU: Cooler Master V Gold Series 750W
+* CPU: AMD Ryzen 7 9800X3D
+* GPU: AMD RX 9070 XT
+* RAM: Klevv 32GB DDR5 6000Mhz CL30
+* Mainboard: Gigabyte X870 AORUS ELITE
 
 
 #### What Operating System / Linux Distribution do you use?
-[Pop! OS](https://system76.com/pop)
+[Pop! OS](https://system76.com/pop) 24.04
 
 
 #### What glasses are you wearing?
