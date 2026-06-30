@@ -95,16 +95,53 @@ I had no idea why. My hypothesis at the time was that the process of pushing
 YAML to kube via helm and kubectl was fragile and that it was running into
 issues with state becoming corrupted or partially deployed.
 
-Finding myself frustrated again, I started to remember some of the things my
-colleagues had mentioned, such as Talos Linux so I decided to see what that was
-about. It sold this idea of an immutable kubernetes cluster which supposedly
-would prevent the kind of state corruption that I thought I was running into.
+Finding myself frustrated, I took a break to think about what my next approach would be.
 
-I also had another friend tell me about his setup where he doesn't run any helm
+I had a friend tell me about his setup where he doesn't run any helm
 commands against the cluster, but instead uses it to produce kubeconfigs as
 build artifacts which are then ingested via GitOps.
 
+I also started to remember a recommendation to use Talos Linux from another
+peer so I decided to see what that was about. It sold this idea of an immutable
+kubernetes cluster which supposedly would prevent the kind of state corruption
+that I thought I was running into.
 
+At this stage I decided to completely pivot, use Talos Linux, and switch to
+Pulumi instead of Cloudformation for the infrastructure even though it would
+cost me some time in the learning process.
+
+I quite enjoyed Pulumi; it feels like a type-checked infrastructure, which is
+cool. I used the golang SDK.
+
+After a bunch of troubleshooting and looking at logs of pods, and feeding those
+logs into Gemini, I discovered that there was a bootstrap dependency issue
+where other pods like Argo required that AWS CCM was setup before it would work
+properly.
+
+After this, it was pretty smooth sailing. I could add CRDs and charts to my
+gitrepo and argo would pick them up and provision pods quickly. I started to
+thinkabout how to platformatize everything that I'd built but I realised that
+thiscan become quite subjective, and so for this article I won't go into that
+atall, but the options that I was aware of were tools like KubeVela,
+Crossplane,and Backstage.
+
+< here is where I boil the entire article to its essence >
+
+Two paths:
+
+## Managed-k8s
+
+* No-brainer
+* Good for small scale
+* EKS - Locked into AWS Bottlerocket
+* GKE - ???
+* AKS - ???
+
+## Run-Your-Own-Cluster
+
+* Don't want vendor lock-in
+* Strong need for multi-cloud, especially mixed with baremetal
+* 
 
 ---
 
