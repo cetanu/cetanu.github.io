@@ -78,7 +78,7 @@ executing a particular system call, such as `read()` or `sleep()`.
 However, the *scheduler* can also pause a task *without any cooperation from the
 task.*
 
-{{ image(url="/preemption_meme_1.png", alt="Scheduler standing behind the
+{{ image(url="/img/preemption_meme_1.png", alt="Scheduler standing behind the
 application, about to ruin its day", no_hover=true) }}
 
 ## Preemption

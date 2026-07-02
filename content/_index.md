@@ -66,5 +66,74 @@ title = "Home"
 
 Welcome to my personal site.
 
-Here, I may share things I am working on or thoughts that I've had in recent
-times.
+{{ image(url="/img/checkem.jpg", alt="me", no_hover=true) }}
+
+## Frequently Asked Questions
+
+### What keyboard is that?
+I use a [Nuphy](https://nuphy.com?sca_ref=11306305.p2hPK9CKOM&utm_source=affiliate&utm_medium=kol&utm_campaign=nuphy_affiliate) keyboard.
+
+Most of the times I stream, I'm probably using a low-profile [Kick75](https://nuphy.com/products/nuphy-kick75?sca_ref=11306305.p2hPK9CKOM&sca_source=twitch&utm_source=affiliate&utm_medium=kol&utm_campaign=nuphy_affiliate)
+with brown switches.
+
+[{{ image(url="/img/nuphy-kick75.webp", alt="kick75", no_hover=true) }}](https://nuphy.com/products/nuphy-kick75?sca_ref=11306305.p2hPK9CKOM&sca_source=twitch&utm_source=affiliate&utm_medium=kol&utm_campaign=nuphy_affiliate)
+
+I also own an [Air75 V3](https://nuphy.com/products/nuphy-air75-v3?sca_ref=11306305.p2hPK9CKOM&sca_source=twitch&utm_source=affiliate&utm_medium=kol&utm_campaign=nuphy_affiliate)
+which I use as a portable keyboard, wrapped in a [NuFolio](https://nuphy.com/products/extra-nufolio-v4-for-air75-v3?sca_ref=11306305.p2hPK9CKOM&sca_source=blog&utm_source=affiliate&utm_medium=kol&utm_campaign=nuphy_affiliate)
+
+[{{ image(url="/img/nuphy-airv3.webp", alt="air75 v3", no_hover=true) }}](https://nuphy.com/products/nuphy-air75-v3?sca_ref=11306305.p2hPK9CKOM&sca_source=twitch&utm_source=affiliate&utm_medium=kol&utm_campaign=nuphy_affiliate)
+
+### What mouse do you use?
+My mouse is a [Steelseries Rival 3 Gen 2](https://steelseries.com/en-au/gaming-mice/rival-3-gen-2)
+
+[{{ image(url="/img/steelseries-rival.webp", alt="rival", no_hover=true) }}](https://steelseries.com/en-au/gaming-mice/rival-3-gen-2)
+
+### What are your PC specs?
+#### Machine
+|               |                              |
+| :------------ | :--------------------------- |
+| __Mainboard__ | Gigabyte X870 AORUS ELITE    |
+| __Processor__ | AMD Ryzen 7 9800X3D          |
+| __Graphics__  | Sapphire Radeon RX 9070 XT   |
+| __Memory__    | Klevv 32GB DDR5 6000Mhz CL30 |
+| __Case__      | NZXT H6 Flow                 |
+| __Cooler__    | Cooler Master MasterLiquid   |
+
+#### Peripherals
+|                |                              |
+| :------------- | :--------------------------- |
+| __Display__    | Samsung Odyssey G7 37"       |
+| __Microphone__ | Shure MV7+                   |
+| __Camera__     | Elgato Facecam 4K            |
+
+{{ image(url="/img/desktop-pc.png", alt="my pc", no_hover=true) }}
+
+### What Operating System / Linux Distribution do you use?
+[Pop! OS](https://system76.com/pop) 24.04 with COSMIC desktop
+
+### What Neovim theme are you using?
+[sainnhe/edge](https://github.com/sainnhe/edge)
+
+[{{ image(url="/img/neovim-theme.png", alt="neovim", no_hover=true) }}](https://github.com/sainnhe/edge)
+
+### Do you play games? What are your favorites?
+Yes, I play games, 100% on Linux
+
+#### Currently playing
+
+* Deep Rock Galactic (+ Survivors, + Rogue Core)
+* Path of Exile (1 & 2)
+* Noita
+* Squad
+* Factorio
+
+#### Old favorites
+
+* Dota 2
+* Diablo 2
+* Quake 1 & 3
+* Mindustry
+* Valheim
+
+### What glasses are you wearing?
+Ra Optics - Sol [Daylight](https://raoptics.com/products/sol-x-ra-daylight) & [Sunset](https://raoptics.com/products/sol-x-ra-sunset)

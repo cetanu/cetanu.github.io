@@ -64,7 +64,7 @@ Even on your laptop or desktop linux computer, you should be able to install
 This is my desktop for example, which has one socket with eight cores, and 32
 GB of memory:
 
-{{ image(url="/lstopo.png", alt="CPU topography", no_hover=true) }}
+{{ image(url="/img/lstopo.png", alt="CPU topography", no_hover=true) }}
 
 On a server system with multiple cores you should see additional separate NUMA nodes.
 
