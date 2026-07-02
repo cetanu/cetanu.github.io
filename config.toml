@@ -20,7 +20,7 @@ bottom_footnotes = true
 github_alerts = true
 
 [markdown.highlighting]
-theme = "gruvbox-dark-hard"
+theme = "tokyo-night"
 
 [extra]
 emoji_favicon = "🌘"
@@ -31,17 +31,18 @@ default_theme = "dark"
 
 [extra.nav]
 links = [
-	{ url = "@/blog/_index.md", name = "Blog" },
+	{ name = "Blog",     url = "@/blog/_index.md" },
+    { name = "Links", menu = [
+        { name = "YouTube",  url = "https://youtube.com/@vsyrakis" },
+        { name = "GitHub",   url = "https://github.com/cetanu" },
+        { name = "LinkedIn", url = "https://www.linkedin.com/in/vsyrakis" },
+    ]},
+	{ name = "PGP Key",  url = "/key.txt", },
+	{ name = "CV",       url = "/cv.pdf" },
     #{ url = "tags", name = "Tags" }
 ]
 
 [extra.footer]
 show_copyright = true
 show_powered_by = true
-links = [
-    { name = "YouTube",  url = "https://youtube.com/@vsyrakis" },
-	{ name = "GitHub",   url = "https://github.com/cetanu" },
-    { name = "LinkedIn", url = "https://www.linkedin.com/in/vsyrakis" },
-	{ name = "PGP Key",  url = "/key.txt", },
-	{ name = "CV",       url = "/cv.pdf" },
-]
+links = []

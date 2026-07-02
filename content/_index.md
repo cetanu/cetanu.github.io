@@ -64,7 +64,12 @@ title = "Home"
 
 # Vasilios Syrakis
 
-Welcome to my personal site.
+Welcome to my personal site. I am a Senior Systems / Platforms Engineer / SRE
+based in Sydney, Australia.
+
+You might know me from my [viral video](https://www.youtube.com/watch?v=55pTFVoclvE) 
+on YouTube where I talked about getting laid off by Atlassian after 8 years,
+and delved into some of the systems that I built whilst there.
 
 {{ image(url="/img/versailles.png", alt="me", no_hover=true) }}
 
@@ -110,6 +115,8 @@ My mouse is a [Steelseries Rival 3 Gen 2](https://steelseries.com/en-au/gaming-m
 
 ### What Operating System / Linux Distribution do you use?
 [Pop! OS](https://system76.com/pop) 24.04 with COSMIC desktop
+
+{{ youtube(id="IyXzjnd6q3g") }}
 
 ### What Neovim theme are you using?
 [sainnhe/edge](https://github.com/sainnhe/edge)
@@ -300,5 +307,6 @@ Yes, I play games, 100% on Linux
   </a>
 </div>
 
-### What glasses are you wearing?
+### What are those glasses you sometimes wear?
 Ra Optics - Sol [Daylight](https://raoptics.com/products/sol-x-ra-daylight) & [Sunset](https://raoptics.com/products/sol-x-ra-sunset)
+
