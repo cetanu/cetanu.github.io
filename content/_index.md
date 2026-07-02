@@ -118,6 +118,22 @@ My mouse is a [Steelseries Rival 3 Gen 2](https://steelseries.com/en-au/gaming-m
 
 {{ youtube(id="IyXzjnd6q3g") }}
 
+### What editor do you use?
+
+Neovim
+
+### What plugins do you use? Where are your dotfiles?
+
+[My dotfiles are here](https://github.com/cetanu/dotfiles)
+
+What I would consider my essential plugins are:
+
+* [telescope](https://github.com/nvim-telescope/telescope.nvim)
+* [neogit](https://github.com/TimUntersberger/neogit)
+* [gitsigns](https://github.com/lewis6991/gitsigns.nvim)
+* [blink.cmp](https://github.com/saghen/blink.cmp)
+* [key-menu](https://github.com/cetanu/key-menu.nvim)
+
 ### What Neovim theme are you using?
 [sainnhe/edge](https://github.com/sainnhe/edge)
 
