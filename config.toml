@@ -23,8 +23,8 @@ github_alerts = true
 theme = "gruvbox-dark-hard"
 
 [extra]
-emoji_favicon = "🌞"
-accent_color = "goldenrod"
+emoji_favicon = "🌘"
+accent_color = "plum"
 show_reading_time = true
 show_share_button = true
 default_theme = "dark"

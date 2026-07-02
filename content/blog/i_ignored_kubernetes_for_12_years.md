@@ -125,6 +125,14 @@ thiscan become quite subjective, and so for this article I won't go into that
 atall, but the options that I was aware of were tools like KubeVela,
 Crossplane,and Backstage.
 
+{% alert(warning=true) %}
+Still writing this up
+{% end %}
+
+{{ youtube(id="V8iT_2YHtns") }}
+
+<!--
+
 < here is where I boil the entire article to its essence >
 
 Two paths:
@@ -215,4 +223,5 @@ video: recent experience with interviews
 * system design
     - requirements gathering to a professional degree
         * understand what the hiring company wants/needs
+        -->
 

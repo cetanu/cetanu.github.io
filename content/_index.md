@@ -66,7 +66,7 @@ title = "Home"
 
 Welcome to my personal site.
 
-{{ image(url="/img/checkem.jpg", alt="me", no_hover=true) }}
+{{ image(url="/img/versailles.png", alt="me", no_hover=true) }}
 
 ## Frequently Asked Questions
 
@@ -119,21 +119,186 @@ My mouse is a [Steelseries Rival 3 Gen 2](https://steelseries.com/en-au/gaming-m
 ### Do you play games? What are your favorites?
 Yes, I play games, 100% on Linux
 
+<style>
+.game-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1.25rem;
+  margin-block: 1.5rem;
+}
+
+.game-card {
+  background-color: var(--fg-muted-1);
+  border-radius: var(--rounded-corner);
+  overflow: hidden;
+  box-shadow: var(--edge-highlight), var(--shadow);
+  transition: transform var(--transition-longer), box-shadow var(--transition-longer), border-color var(--transition-longer);
+  border: 1px solid var(--fg-muted-2);
+  display: flex;
+  flex-direction: column;
+  text-decoration: none !important;
+  color: inherit !important;
+}
+
+.game-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 0 0 1px var(--accent-color), var(--shadow-raised);
+  border-color: var(--accent-color);
+}
+
+.game-card-image-wrapper {
+  overflow: hidden;
+  width: 100%;
+  height: 110px;
+  position: relative;
+}
+
+.game-card-image-wrapper img {
+  margin: 0 !important;
+  box-shadow: none !important;
+  border-radius: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  transition: transform var(--transition-longer) !important;
+}
+
+.game-card:hover .game-card-image-wrapper img {
+  transform: scale(1.08);
+}
+
+.game-card-content {
+  padding: 0.75rem;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  justify-content: center;
+}
+
+.game-card-title {
+  font-size: 0.95rem;
+  font-weight: 600;
+  margin: 0;
+  line-height: 1.25;
+  color: var(--fg-color);
+}
+
+.game-card-subtitle {
+  font-size: 0.75rem;
+  color: var(--fg-muted-4);
+  margin-top: 0.25rem;
+  margin-bottom: 0;
+}
+</style>
+
 #### Currently playing
 
-* Deep Rock Galactic (+ Survivors, + Rogue Core)
-* Path of Exile (1 & 2)
-* Noita
-* Squad
-* Factorio
+<div class="game-grid">
+  <a href="https://store.steampowered.com/app/548430/Deep_Rock_Galactic/" target="_blank" rel="noopener" class="game-card">
+    <div class="game-card-image-wrapper">
+      <img src="/img/deep-rock-galactic.jpg" alt="Deep Rock Galactic">
+    </div>
+    <div class="game-card-content">
+      <div class="game-card-title">Deep Rock Galactic</div>
+      <div class="game-card-subtitle">+ Survivors, + Rogue Core</div>
+    </div>
+  </a>
+  <a href="https://store.steampowered.com/app/238960/Path_of_Exile/" target="_blank" rel="noopener" class="game-card">
+    <div class="game-card-image-wrapper">
+      <img src="/img/path-of-exile.jpg" alt="Path of Exile">
+    </div>
+    <div class="game-card-content">
+      <div class="game-card-title">Path of Exile</div>
+      <div class="game-card-subtitle">1 & 2</div>
+    </div>
+  </a>
+  <a href="https://store.steampowered.com/app/881100/Noita/" target="_blank" rel="noopener" class="game-card">
+    <div class="game-card-image-wrapper">
+      <img src="/img/noita.jpg" alt="Noita">
+    </div>
+    <div class="game-card-content">
+      <div class="game-card-title">Noita</div>
+      <div class="game-card-subtitle">Magical action roguelite</div>
+    </div>
+  </a>
+  <a href="https://store.steampowered.com/app/393380/Squad/" target="_blank" rel="noopener" class="game-card">
+    <div class="game-card-image-wrapper">
+      <img src="/img/squad.jpg" alt="Squad">
+    </div>
+    <div class="game-card-content">
+      <div class="game-card-title">Squad</div>
+      <div class="game-card-subtitle">Tactical FPS</div>
+    </div>
+  </a>
+  <a href="https://store.steampowered.com/app/427520/Factorio/" target="_blank" rel="noopener" class="game-card">
+    <div class="game-card-image-wrapper">
+      <img src="/img/factorio.jpg" alt="Factorio">
+    </div>
+    <div class="game-card-content">
+      <div class="game-card-title">Factorio</div>
+      <div class="game-card-subtitle">The factory must grow</div>
+    </div>
+  </a>
+</div>
 
 #### Old favorites
 
-* Dota 2
-* Diablo 2
-* Quake 1 & 3
-* Mindustry
-* Valheim
+<div class="game-grid">
+  <a href="https://store.steampowered.com/app/570/Dota_2/" target="_blank" rel="noopener" class="game-card">
+    <div class="game-card-image-wrapper">
+      <img src="/img/dota-2.jpg" alt="Dota 2">
+    </div>
+    <div class="game-card-content">
+      <div class="game-card-title">Dota 2</div>
+      <div class="game-card-subtitle">MOBA</div>
+    </div>
+  </a>
+  <a href="https://diablo2.blizzard.com/" target="_blank" rel="noopener" class="game-card">
+    <div class="game-card-image-wrapper">
+      <img src="/img/diablo-2.jpg" alt="Diablo 2">
+    </div>
+    <div class="game-card-content">
+      <div class="game-card-title">Diablo II</div>
+      <div class="game-card-subtitle">Action RPG classic</div>
+    </div>
+  </a>
+  <a href="https://store.steampowered.com/app/2310/QUAKE/" target="_blank" rel="noopener" class="game-card">
+    <div class="game-card-image-wrapper">
+      <img src="/img/quake-1.jpg" alt="Quake">
+    </div>
+    <div class="game-card-content">
+      <div class="game-card-title">Quake</div>
+      <div class="game-card-subtitle">Dark fantasy FPS</div>
+    </div>
+  </a>
+  <a href="https://store.steampowered.com/app/2200/Quake_III_Arena/" target="_blank" rel="noopener" class="game-card">
+    <div class="game-card-image-wrapper">
+      <img src="/img/quake-3.jpg" alt="Quake III Arena">
+    </div>
+    <div class="game-card-content">
+      <div class="game-card-title">Quake III Arena</div>
+      <div class="game-card-subtitle">Arena shooter classic</div>
+    </div>
+  </a>
+  <a href="https://store.steampowered.com/app/1127400/Mindustry/" target="_blank" rel="noopener" class="game-card">
+    <div class="game-card-image-wrapper">
+      <img src="/img/mindustry.jpg" alt="Mindustry">
+    </div>
+    <div class="game-card-content">
+      <div class="game-card-title">Mindustry</div>
+      <div class="game-card-subtitle">Factory tower defense</div>
+    </div>
+  </a>
+  <a href="https://store.steampowered.com/app/892970/Valheim/" target="_blank" rel="noopener" class="game-card">
+    <div class="game-card-image-wrapper">
+      <img src="/img/valheim.jpg" alt="Valheim">
+    </div>
+    <div class="game-card-content">
+      <div class="game-card-title">Valheim</div>
+      <div class="game-card-subtitle">Viking survival sandbox</div>
+    </div>
+  </a>
+</div>
 
 ### What glasses are you wearing?
 Ra Optics - Sol [Daylight](https://raoptics.com/products/sol-x-ra-daylight) & [Sunset](https://raoptics.com/products/sol-x-ra-sunset)
