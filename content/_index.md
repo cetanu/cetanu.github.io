@@ -10,7 +10,39 @@ title = "Home"
 <script>
 (function() {
     const terminal = document.getElementById('crt-terminal');
-    let buffer = Array(5).fill(""); 
+    if (!terminal) return;
+
+    let buffer = Array(5).fill("");
+
+    const getTimestamp = () => {
+        const now = new Date();
+        const year = now.getFullYear();
+        const month = String(now.getMonth() + 1).padStart(2, '0');
+        const day = String(now.getDate()).padStart(2, '0');
+        const hours = String(now.getHours()).padStart(2, '0');
+        const minutes = String(now.getMinutes()).padStart(2, '0');
+        const seconds = String(now.getSeconds()).padStart(2, '0');
+        const ms = String(now.getMilliseconds()).padStart(3, '0');
+        return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}.${ms}`;
+    };
+
+    const bootSequence = [
+        { cat: "main", file: "server.cc:352", msg: "envoy version: v1.31.0/d3bb2586b/CLEAN/RELEASE", delay: 50 },
+        { cat: "main", file: "server.cc:421", msg: "initializing epoch 0 (trusted_ca: true)", delay: 80 },
+        { cat: "config", file: "configuration_impl.cc:127", msg: "loading bootstrap config", delay: 120 },
+        { cat: "upstream", file: "grpc_mux_impl.cc:120", msg: "establishing xDS gRPC channel to control-plane.internal:18000", delay: 250 },
+        { cat: "upstream", file: "grpc_subscription_impl.cc:101", msg: "gRPC config subscription active: envoy.config.listener.v3.Listener", delay: 180 },
+        { cat: "upstream", file: "grpc_subscription_impl.cc:118", msg: "LDS: update received (version 1a8c9b), 2 active listeners", delay: 150 },
+        { cat: "upstream", file: "grpc_subscription_impl.cc:101", msg: "gRPC config subscription active: envoy.config.cluster.v3.Cluster", delay: 120 },
+        { cat: "upstream", file: "grpc_subscription_impl.cc:118", msg: "CDS: update received (version 1a8c9b), 4 active clusters", delay: 140 },
+        { cat: "upstream", file: "grpc_subscription_impl.cc:101", msg: "gRPC config subscription active: envoy.config.route.v3.RouteConfiguration", delay: 100 },
+        { cat: "upstream", file: "grpc_subscription_impl.cc:118", msg: "RDS: update received (version 9d2f1c), routes updated", delay: 110 },
+        { cat: "upstream", file: "grpc_subscription_impl.cc:101", msg: "gRPC config subscription active: envoy.config.endpoint.v3.ClusterLoadAssignment", delay: 130 },
+        { cat: "upstream", file: "grpc_subscription_impl.cc:118", msg: "EDS: update received (version 4f2c0a), 18 endpoints healthy", delay: 120 },
+        { cat: "main", file: "server.cc:662", msg: "all control plane configs applied. starting main control loop", delay: 200 },
+        { cat: "main", file: "server.cc:680", msg: "protocol engine started, ready for traffic", delay: 100 }
+    ];
+
     const router = {
         "GET": [
             "/", "/metrics", "/healthz",
@@ -30,34 +62,72 @@ title = "Home"
     const statuses = [200, 200, 200, 200, 201, 304, 404, 500, 403];
     const methods = Object.keys(router);
 
+    const xdsUpdates = [
+        { cat: "upstream", file: "grpc_subscription_impl.cc:118", msg: "EDS: update received (version {ver}), 18 endpoints healthy" },
+        { cat: "upstream", file: "grpc_subscription_impl.cc:118", msg: "CDS: update received (version {ver}), 4 active clusters" },
+        { cat: "upstream", file: "grpc_subscription_impl.cc:118", msg: "RDS: update received (version {ver}), routes updated" },
+        { cat: "upstream", file: "grpc_subscription_impl.cc:118", msg: "LDS: update received (version {ver}), 2 active listeners" }
+    ];
+
+    const updateTerminal = (line) => {
+        buffer.shift();
+        buffer.push(line);
+        terminal.innerText = buffer.join('\n');
+    };
+
+    const makeBootLog = (entry) => {
+        const ts = getTimestamp();
+        return `[${ts}][1][info][${entry.cat}] [${entry.file}] ${entry.msg}`;
+    };
+
     const generateLog = () => {
-        const ts = new Date().toISOString().replace('T', ' ').slice(0, 19);
+        const now = new Date();
+        const ts = now.toISOString();
         const method = methods[Math.floor(Math.random() * methods.length)];
         const routeList = router[method];
         const path = routeList[Math.floor(Math.random() * routeList.length)];
         const status = statuses[Math.floor(Math.random() * statuses.length)];
-        const bytes = Math.floor(Math.random() * 8000) + 124;
-        const latency = (Math.random() * 45 + 2).toFixed(2); // 2ms to 47ms
-        return `[${ts}] ${method} ${path} ${status} ${bytes}b ${latency}ms`;
+        const bytesRx = (method === "POST" || method === "PUT") ? Math.floor(Math.random() * 800) + 45 : 0;
+        const bytesTx = status === 304 ? 0 : Math.floor(Math.random() * 8000) + 124;
+        const latency = (Math.random() * 45 + 2).toFixed(1);
+        return `[${ts}] "${method} ${path} HTTP/1.1" ${status} - ${bytesRx} ${bytesTx} ${latency}ms`;
     };
 
-    const updateTerminal = () => {
-        buffer.shift();
-        buffer.push(generateLog());
-        terminal.innerText = buffer.join('\n');
+    const generateXdsUpdate = () => {
+        const update = xdsUpdates[Math.floor(Math.random() * xdsUpdates.length)];
+        const ver = Math.random().toString(16).substring(2, 8);
+        const msg = update.msg.replace("{ver}", ver);
+        const now = new Date();
+        const ts = now.toISOString();
+        return `[${ts}][1][info][${update.cat}] [${update.file}] ${msg}`;
     };
 
-    for(let i=0; i<5; i++) buffer[i] = generateLog();
+    // Initialize
     terminal.innerText = buffer.join('\n');
 
+    let bootIndex = 0;
+    const runBootstep = () => {
+        if (bootIndex < bootSequence.length) {
+            const step = bootSequence[bootIndex];
+            updateTerminal(makeBootLog(step));
+            bootIndex++;
+            const nextDelay = bootIndex < bootSequence.length ? bootSequence[bootIndex].delay : 3000;
+            setTimeout(runBootstep, nextDelay);
+        } else {
+            loop();
+        }
+    };
+
     const loop = () => {
-        updateTerminal();
+        const isXds = Math.random() < 0.20;
+        const logLine = isXds ? generateXdsUpdate() : generateLog();
+        updateTerminal(logLine);
         const isBurst = Math.random() > 0.05;
         const delay = isBurst ? Math.random() * 200 : Math.random() * 4000 + 1500;
         setTimeout(loop, delay);
     };
 
-    loop();
+    setTimeout(runBootstep, 400);
 })();
 </script>
 {% end %}
