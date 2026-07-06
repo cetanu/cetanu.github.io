@@ -37,3 +37,5 @@ serve:
 
 build:
 	zola build
+	python3 scripts/inline_images.py public
+
