@@ -188,6 +188,10 @@ My mouse is a [Steelseries Rival 3 Gen 2](https://steelseries.com/en-au/gaming-m
 
 {{ youtube(id="IyXzjnd6q3g") }}
 
+### What terminal do you use?
+
+[Ghostty](https://ghostty.org/)
+
 ### What editor do you use?
 
 Neovim
