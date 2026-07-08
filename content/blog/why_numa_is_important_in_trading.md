@@ -1,5 +1,6 @@
 +++
 title = "Profit or Poverty: NUMA"
+description = "An introduction to NUMA (Non-Uniform Memory Access) and why mastering it is a hard requirement for HFT micro-optimizations."
 date = 2026-04-17
 template = "article.html"
 

@@ -1,5 +1,6 @@
 +++
 title = "A Philosophy of Software Design"
+description = "A review of 'A Philosophy of Software Design' by John Ousterhout and how its concepts apply to real-world software architecture."
 date = 2026-03-25
 template = "article.html"
 

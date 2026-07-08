@@ -1,5 +1,6 @@
 +++
 title = "Profit or Poverty: TLB"
+description = "Understanding virtual memory, the TLB (Translation Lookaside Buffer), and its performance impact on low-latency systems."
 date = 2026-04-28
 template = "article.html"
 

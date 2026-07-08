@@ -1,5 +1,6 @@
 +++
 title = "For 12 years, I ignored Kubernetes"
+description = "My journey from viewing Kubernetes as overcomplicated hype to understanding its true value in modern infrastructure."
 date = 2026-06-30
 template = "article.html"
 
