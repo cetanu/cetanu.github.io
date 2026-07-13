@@ -3,7 +3,6 @@ title = "How to Avoid Sharding Yourself"
 description = ""
 date = 2026-07-11
 template = "article.html"
-render = false
 
 [taxonomies]
 tags = ["system design", "multitenant", "sharding"]
@@ -14,16 +13,22 @@ go_to_top = true
 
 I watched a video named [The Problem Sharding a Database
 Solves](https://www.youtube.com/watch?v=rxR4nIQ0hCk) by [Web Dev
-Cody](https://www.youtube.com/@WebDevCody). He has quite a large number of
-subscribers, his video popped up on my feed, and I enjoyed the video. Also, the
-diagramming tool he's using is cool and if anyone knows what it is - please
-tell me!
+Cody](https://www.youtube.com/@WebDevCody).  
+He has quite a large number of subscribers, his video popped up on my feed, and
+I enjoyed the video.
+
+{{ image(url="/img/cody.png", alt="screenshot of cody's video", no_hover=true) }}
+
+<small>
+Also, the diagramming tool he's using is cool and if anyone knows what it is -
+please tell me!
+</small>
 
 However, one thing stuck out to me that I wanted to intercept in order to
 provide advice on, based on my own real professional experience.
 
-# The part I'm focusing on
 
+## The part I'm focusing on
 It's not the whole video, it's just one minor part. Cody delivers on what I
 think the point of his video is - to describe how sharding solves a particular
 problem - but there is some detail that comes across as a suggestion for how to
@@ -43,8 +48,8 @@ buckets" where instead of a hash being a 1:1 mapping between a tenant and a
 shard, you take the modulus of the hash which maps a range of tenants to a
 shard instead.
 
-# Multi-tenant Routing with an Algorithm is an Anti-Pattern
 
+## Multi-tenant Routing with an Algorithm is an Anti-Pattern
 These methods of routing tenants to shards aren't broken, but let's call them anti-patterns.
 
 First, let's talk about why hashing is an attractive option.
@@ -55,7 +60,7 @@ First, let's talk about why hashing is an attractive option.
 
 But it leaves you open to **operational pain**, even with the use of virtual buckets.
 
-### One tenant within a bucket can dwarf other tenants
+#### One tenant within a bucket can dwarf other tenants
 If we just assume that the Pareto principle will play out eventually, you're
 going to have one tenant which consumes 80% of a single shards capacity.
 
@@ -65,7 +70,7 @@ fights for dominance with the other small tenants on the shard, or you add a
 special-case to your hashing algorithm that lives on forever, and most likely
 grows, needing to be maintained by operators.
 
-### No flexibility for isolation
+#### No flexibility for isolation
 This is semi-related to the above, essentially,  if you wanted to have
 different shards, like a "quarantine" shard for misbehaving tenants, or a "free
 tier/trial" shard, or an "important enterprise customer" shard with only 1
@@ -75,7 +80,7 @@ These requirements will predictably appear as you grow and get more customers.
 Maybe they won't, but we can take care of this with very little operational
 friction as we'll see later.
 
-### Rebalancing friction doesn't go away
+#### Rebalancing friction doesn't go away
 Cody does point out that even when you add new shards, you still might need to
 rebalance tenants, but you can maybe do this with some background process or
 lazy migration that writes to both shards at the same time.
@@ -87,8 +92,8 @@ Note: you _can_ mitigate this particular downside with [Consistent
 Hashing](https://en.wikipedia.org/wiki/Consistent_hashing) but the others are
 still unsolved.
 
-# Your tenants deserve their own directory
 
+## Your tenants deserve their own directory
 I know it's attractive to use clever software to avoid adding infrastructure to
 solve a problem, but I think this situation justifies the addition of a
 database to act as a lookup table or directory for your tenants.
@@ -104,7 +109,9 @@ probably won't go under 3 nines of availability.
 
 Externalising the tenant routing to a lookup table unlocks advantages.
 
-### Surgical Rebalancing
+{{ image(url="/img/lookup-table.png", alt="diagram of architecture that uses a lookup table", no_hover=true) }}
+
+#### Surgical Rebalancing
 Your rebalancing goes from a stressful situation of changing the algorithm,
 propagating it to your gateways and praying, to a 5 step process that an intern
 can execute without bringing the company down.
@@ -115,30 +122,72 @@ can execute without bringing the company down.
 4. Switch: single atomic database query to point at the new shard
 5. Cleanup: wait a week and delete the old copy
 
-### Better Isolation
+#### Better Isolation
 Before, changing the way hashing works to satisfy the needs of a particular
 tenant or tenants meant that you were changing the algorithm for _everyone_.
 This represented a huge blast radius.
 
 With a lookup table, you're changing one record.
 
-# Fives nines of availability? No, I said nine fives...
 
+## Fives nines of availability? No, I said nine fives...
 If you've somehow reached the point where that lookup table is no longer
 sufficient (and you're still reading this blog? lol), or you just feel
 uncomfortable with having to make a lookup on every request to a single point
 of failure, there's a pattern you can employ to scale things further and bring
 the probability of an outage to a number approximating zero.
 
-You can actually
-[read](https://www.atlassian.com/blog/atlassian-engineering/aws-scaling-multi-region-low-latency-service)
-[about](https://www.atlassian.com/blog/atlassian-engineering/atlassian-critical-services-above-six-nines-of-availability)
+You can actually read about
+<sup>
+[1](https://www.atlassian.com/blog/atlassian-engineering/aws-scaling-multi-region-low-latency-service)
+[2](https://www.atlassian.com/blog/atlassian-engineering/atlassian-critical-services-above-six-nines-of-availability)
+</sup>
 how Atlassian solved this exact problem using the
 [CQRS pattern](https://en.wikipedia.org/wiki/Command_Query_Responsibility_Segregation).
 However, I'm going to explain it here even more concisely.
 
 CQRS, or "Command Query Responsibility Segregation", can enable a caching
 pattern where distributed nodes are able to keep a local copy of the data that
-they can query even while the lookup table is offline.
+they can query, cutting the latency of tenant lookups to practically zero, and
+allowing them to continue to operate while the central lookup table is offline.
 
-Distribute caches to each of the gateways that needs the data, and have those caches update  < more detail >
+Put even more simply:
+
+1. Something writes to the central lookup table (the Command)
+2. The central lookup table publishes an event to a broker
+3. The nodes pick up the event (the Query)
+
+{{ image(url="/img/cqrs-example.png", alt="diagram of an architecture that demonstrates cqrs", no_hover=true) }}
+
+An example of a broker could be an SNS topic, or a version number on an API, or
+whatever else you want to use, as long as the nodes can access it.
+
+### A Contrived example
+
+Imagine an isolated scenario on a single machine where there's a database, an
+application with its own sqlite cache, and a file containing a number to
+indicate what version the data is at currently.
+
+When a row is added or changed in the database, it increments the number in the
+file. The application has a background thread checking the number in the file,
+and notices that it's been incremented, so it replaces the sqlite cache
+atomically.
+
+This entire time, the application has been able to read from its local sqlite
+database uninterrupted.
+
+The same concept applies to your distributed tenant routing. The central lookup
+table acts as the source of truth, but your application nodes or API gateways
+can maintain their own fast, resilient local caches of the routing rules.
+
+## Conclusion
+
+While clever routing to shards might seem appealing at first, saving you an
+extra database lookup and avoiding a new piece of infrastructure, it introduces
+operational complexity as your application scales and your tenants grow.
+
+A lookup table is dead simple, painless, and gives you flexibility for later
+on. If you need the scale, you can add it later with zero downtime.
+
+Often, the "boring" infrastructure choice is exactly what you need to avoid
+sharding yourself.
