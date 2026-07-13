@@ -28,6 +28,8 @@ accent_color = "plum"
 show_reading_time = true
 show_share_button = true
 default_theme = "dark"
+scripts = ["presentation.js"]
+styles = ["presentation.css"]
 
 [extra.nav]
 links = [
