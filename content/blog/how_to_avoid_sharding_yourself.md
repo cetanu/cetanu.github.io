@@ -1,6 +1,6 @@
 +++
 title = "How to Avoid Sharding Yourself"
-description = ""
+description = "A deep dive into database sharding, tenant routing strategies, and why deterministic hashing might cause headaches when scaling multitenant architectures."
 date = 2026-07-11
 template = "article.html"
 
@@ -17,6 +17,10 @@ Cody](https://www.youtube.com/@WebDevCody).
 He has quite a large number of subscribers, his video popped up on my feed, and
 I enjoyed the video.
 
+It's about splitting up your database and the advantage of doing so, but it
+introduces a small problem and that is the question of how to ensure that each
+user accesses the correct database shard.
+
 {{ image(url="/img/cody.png", alt="screenshot of cody's video", no_hover=true) }}
 
 <small>
@@ -28,15 +32,14 @@ However, one thing stuck out to me that I wanted to intercept in order to
 provide advice on, based on my own real professional experience.
 
 
-## The part I'm focusing on
-It's not the whole video, it's just one minor part. Cody delivers on what I
-think the point of his video is - to describe how sharding solves a particular
-problem - but there is some detail that comes across as a suggestion for how to
-implement routing a tenant to the shards and this is what I'll be discussing.
+## What caught my attention
+Cody delivers on what I think is the point of his video - to outline the advantage of sharding.
+But there is an example for how to implement routing a tenant to the shards and
+this is what I'll be providing advice on, based on my professional experience.
 
 Cody describes a naive approach where you take some kind of tenant identifier
-and hash it, which gives you a deterministic way to determine which shard the
-tenant lives on. 
+and hash it, which gives you a deterministic key which maps to the shard that
+the tenant lives on. 
 
 He then rightly points out that if you pick this approach, as the number and
 size of tenants grows you've now made it harder to rebalance your shards, or
@@ -49,7 +52,7 @@ shard, you take the modulus of the hash which maps a range of tenants to a
 shard instead.
 
 
-## Multi-tenant Routing with an Algorithm is an Anti-Pattern
+## Algorithmic Routing can be an Anti-Pattern
 These methods of routing tenants to shards aren't broken, but let's call them anti-patterns.
 
 First, let's talk about why hashing is an attractive option.
@@ -93,41 +96,44 @@ Hashing](https://en.wikipedia.org/wiki/Consistent_hashing) but the others are
 still unsolved.
 
 
-## Your tenants deserve their own directory
-I know it's attractive to use clever software to avoid adding infrastructure to
-solve a problem, but I think this situation justifies the addition of a
-database to act as a lookup table or directory for your tenants.
+## Use a Lookup Table for Tenant Routing
+{{ image(url="/img/lookup-table.png", alt="diagram of architecture that uses a lookup table", no_hover=true) }}
+
+I know it's appealing to avoid adding infrastructure to solve a problem, but I
+think this situation justifies the addition of a database to act as a lookup
+table or directory for your tenants.
 
 For the vast majority of businesses, a dedicated Redis or Postgres instance can
 serve this purpose and take you very far.
 
-Yes, it is a single point of failure, and if it goes down so does your entire
-app probably, but do a little back of the napkin calculation on the probability
-of redis (in a cluster, with high-availability), whose only job is to keep key
-value pairs, becoming suddenly unavailable for any serious amount of time. It
-probably won't go under 3 nines of availability.
-
-Externalising the tenant routing to a lookup table unlocks advantages.
-
-{{ image(url="/img/lookup-table.png", alt="diagram of architecture that uses a lookup table", no_hover=true) }}
+Yes, it can be a single point of failure, and when it goes down so does your
+entire app probably, but do a little back of the napkin calculation on the
+probability of redis (in a cluster, with high-availability), becoming suddenly
+unavailable for any serious amount of time. It probably won't go under 3 nines
+of availability.
 
 #### Surgical Rebalancing
 Your rebalancing goes from a stressful situation of changing the algorithm,
 propagating it to your gateways and praying, to a 5 step process that an intern
 can execute without bringing the company down.
 
-1. Identify: you surface a big noisy tenant via monitoring or regular capacity planning
-2. Provision: a new shard is created
-3. Sync: background job to copy data, stream new writes in the meantime
-4. Switch: single atomic database query to point at the new shard
-5. Cleanup: wait a week and delete the old copy
+1. Identify a big noisy tenant
+2. Provision a new shard
+3. Run a background job to copy data, stream new writes in the meantime
+4. Switch to the new shard atomically
+5. Wait a week and delete the old copy
 
 #### Better Isolation
-Before, changing the way hashing works to satisfy the needs of a particular
-tenant or tenants meant that you were changing the algorithm for _everyone_.
-This represented a huge blast radius.
+Before, changing the way hashing works meant that you were changing the
+algorithm for _everyone_.
 
-With a lookup table, you're changing one record.
+One mistake and everyone is cooked.
+
+With a lookup table, you're changing a single record.
+
+You also unlock the scenario discussed above where you can move your enterprise
+customers to their own shard, or throw the naughty tenants into quarantine so
+they don't annoy everyone else.
 
 
 ## Fives nines of availability? No, I said nine fives...
@@ -160,7 +166,8 @@ Put even more simply:
 {{ image(url="/img/cqrs-example.png", alt="diagram of an architecture that demonstrates cqrs", no_hover=true) }}
 
 An example of a broker could be an SNS topic, or a version number on an API, or
-whatever else you want to use, as long as the nodes can access it.
+whatever else you want to use, as long as it's cheap for nodes to access and
+backed by something highly available.
 
 ### A Contrived example
 
