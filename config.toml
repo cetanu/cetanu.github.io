@@ -1,6 +1,6 @@
 title = "Vasilios Syrakis"
 description = "A simple blog made with Zola and Duckquill"
-base_url = "https://cetanu.github.io"
+base_url = "https://vsyrakis.dev"
 theme = "duckquill"
 
 compile_sass = true
