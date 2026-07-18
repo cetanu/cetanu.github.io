@@ -12,8 +12,8 @@ go_to_top = true
 +++
 
 In previous blogs I talked a little bit about
-[NUMA](@/blog/why_numa_is_important_in_trading.md) and the
-[TLB](@/blog/translation_lookaside_buffer.md), if you haven't read those, I
+[NUMA](@/blog/2026-04-17-why_numa_is_important_in_trading.md) and the
+[TLB](@/blog/2026-04-28-translation_lookaside_buffer.md), if you haven't read those, I
 recommend starting there before reading this.
 
 You should already understand that accessing main memory is relatively slow for
