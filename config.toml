@@ -34,6 +34,7 @@ styles = ["presentation.css"]
 [extra.nav]
 links = [
 	{ name = "Blog",     url = "@/blog/_index.md" },
+	{ name = "Shop",     url = "https://vsyrakis-shop.fourthwall.com" },
     { name = "Links", menu = [
         { name = "YouTube",  url = "https://youtube.com/@vsyrakis" },
         { name = "GitHub",   url = "https://github.com/cetanu" },
