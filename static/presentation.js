@@ -131,9 +131,32 @@ document.addEventListener("DOMContentLoaded", () => {
             isNavigating = true;
             clearTimeout(navTimeout);
 
-            // Scroll to the first element of the target section
+            // Scroll to center the entire target section vertically
             if (targetSection.length > 0) {
-                targetSection[0].scrollIntoView({ behavior: 'smooth', block: 'center' });
+                let top = Infinity;
+                let bottom = -Infinity;
+                targetSection.forEach(el => {
+                    const rect = el.getBoundingClientRect();
+                    if (rect.height === 0) return;
+                    if (rect.top < top) top = rect.top;
+                    if (rect.bottom > bottom) bottom = rect.bottom;
+                });
+
+                if (top !== Infinity) {
+                    const sectionHeight = bottom - top;
+                    const sectionCenterY = top + sectionHeight / 2;
+                    const absoluteCenterY = sectionCenterY + window.scrollY;
+                    
+                    // If section is taller than viewport, align near the top instead
+                    const targetScrollY = sectionHeight > window.innerHeight 
+                        ? (top + window.scrollY - 60) 
+                        : (absoluteCenterY - window.innerHeight / 2);
+
+                    window.scrollTo({
+                        top: targetScrollY,
+                        behavior: 'smooth'
+                    });
+                }
             }
             
             // Instantly apply active classes
