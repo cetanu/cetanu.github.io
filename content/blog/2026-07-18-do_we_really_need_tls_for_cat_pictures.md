@@ -112,25 +112,39 @@ having to handshake again.
 
 With these, the impact of TLS encryption on performance is now a fraction of a percent.
 
+---
+
 ## The Three Guarantees
+
+The industry was essentially forced to adopt TLS everywhere, but luckily the
+performance impact was made negligible by advancements in technology.
+However, what we got in return are three key benefits across the entire internet.
+
+**Confidentiality**  
+This is what we're all most familiar with. My bytes are encrypted, nobody can
+read the messages that I send to my AI waifu.
+
+**Integrity**  
+Obviously (maybe?) because of the fact that the bytes are encrypted and
+essentially just look like random scrambled binary, it is impossible for
+someone to change that message before it arrives on your machine, without
+completely breaking or corrupting it.
+
+**Authenticity**  
+Possibly the least thought about of these three, when you connect to a site
+over TLS, you're virtually guaranteed (unless they're deeply compromised) that
+the response that came back is from the site you know and trust, and not some
+node in the middle somewhere.
+
+---
+
+## Conclusion
 
 The push for encrypting the entire web wasn't because people were afraid that
 someone would spy on them while they scroll through cat pictures, it was a
 direct response to a history of companies that broke ethical boundaries and the
 trust of consumers by tampering with their data.
 
-The good news is that even though we were essentially forced to adopt TLS,
-advancements have resulted in the performance impact being negligible and the
-benefits are many.
+This is why we can't have nice things.
 
-The industry was essentially forced to adopt TLS everywhere, but luckily the
-performance impact was made negligible by advancements in technology.
-However, what we got in return are three key benefits across the entire internet.
 
-* Confidentiality
-* Integrity
-* Authenticity
-
-TLS not only provides privacy over the data being transmitted, but it ensures
-that nobody can change it, and that it came from the person you think it did.
-At least until they get compromised and then all bets are off.
