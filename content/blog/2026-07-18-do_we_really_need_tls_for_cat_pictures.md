@@ -112,7 +112,7 @@ having to handshake again.
 
 With these, the impact of TLS encryption on performance is now a fraction of a percent.
 
-## Conclusion
+## The Three Guarantees
 
 The push for encrypting the entire web wasn't because people were afraid that
 someone would spy on them while they scroll through cat pictures, it was a
@@ -121,7 +121,16 @@ trust of consumers by tampering with their data.
 
 The good news is that even though we were essentially forced to adopt TLS,
 advancements have resulted in the performance impact being negligible and the
-benefits are many. TLS not only provides privacy over the data being
-transmitted, but it ensures that nobody can change it, and that it came from
-the person you think it did. At least until they get compromised and then all
-bets are off.
+benefits are many.
+
+The industry was essentially forced to adopt TLS everywhere, but luckily the
+performance impact was made negligible by advancements in technology.
+However, what we got in return are three key benefits across the entire internet.
+
+* Confidentiality
+* Integrity
+* Authenticity
+
+TLS not only provides privacy over the data being transmitted, but it ensures
+that nobody can change it, and that it came from the person you think it did.
+At least until they get compromised and then all bets are off.
