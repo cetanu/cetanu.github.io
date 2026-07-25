@@ -39,7 +39,7 @@ links = [
         { name = "YouTube",  url = "https://youtube.com/@vsyrakis" },
         { name = "GitHub",   url = "https://github.com/cetanu" },
         { name = "LinkedIn", url = "https://www.linkedin.com/in/vsyrakis" },
-        { name = "Discord", url = "https://discord.com/invite/5RwHJs9uP" },
+        { name = "Discord", url = "https://discord.gg/PzxgxA9qNv" },
         { name = "CV",       url = "/cv.pdf" },
     ]},
 	{ name = "PGP",      url = "@/pgp.md" },
