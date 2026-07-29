@@ -1,6 +1,6 @@
 +++
 title = "You don't know what DevOps means"
-description = ""
+description = "An exploration of the history of DevOps, how a cultural movement was rebranded into a job title, and why Platform Engineering is the course correction we needed."
 date = 2026-07-30
 template = "article.html"
 render = true
@@ -88,7 +88,7 @@ Engineering: How Google Runs Production Systems" was released.
 {{ image(url="/img/sre.png", alt="book cover of the SRE book", no_hover=true) }}
 
 Google defined SRE as "what you get when you treat operations as if it's a
-software problem.". That line inspired me personally to start seeing the world
+software problem." That line inspired me personally to start seeing the world
 this way.
 
 The principles of SRE were to eliminate toil through automation, measure system
@@ -138,7 +138,7 @@ and set up alerts with Prometheus. Devs were left with barely enough time to
 work on actual business logic.
 
 ## The Current Correction
-Eventually, the industry realized (and is probably still realising) that you
+Eventually, the industry realised (and is probably still realising) that you
 can't just expect every dev to master every small piece of infra required to
 run their business logic. You're not paying them to write YAML.
 
@@ -179,5 +179,5 @@ articles, and examine the cultural blockages in your organisation.
 If all else fails, you can tunnel-vision on one aspect of platform engineering
 like kubernetes and do that for the next 5 years.
 
-The blog started with a header "What does empathy have to do with DevOps?"
-hopefully now you can answer that yourself.
+This blog started with the question, "What does empathy have to do with DevOps?"
+Hopefully, you can now answer that yourself.
