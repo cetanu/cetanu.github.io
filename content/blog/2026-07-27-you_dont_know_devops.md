@@ -43,6 +43,8 @@ itself was meant to represent breaking down the silo between Dev and Ops, back
 at a time where developers were prioritizing delivering software faster, while
 operations were trying to keep everything stable. Two goals that conflicted.
 
+{{ image(url="/img/wallofconfusion.jpg", no_hover=true) }}
+
 At DevOpsDays, Paul Hammond from Flickr gave a talk titled "10+ Deploys Per
 Day". This blew people's minds because at the time, enterprise software was
 deployed a few times a year. People couldn't imagine deploying software 10
@@ -73,6 +75,8 @@ functions, and continuous feedback loops, they got Jenkins, Puppet, Docker,
 Terraform, and YAML templates. Basically the McDonalds of DevOps.
 
 ## Painting the Silo a Different Color
+{{ image(url="/img/newpaint.jpg", no_hover=true) }}
+
 Companies thought they could just "buy" DevOps, so rather than training
 developers to understand more about infrastructure, or teaching operations to
 write code, they posted a job ad for DevOps Engineers.
@@ -129,6 +133,8 @@ This enabled the idea that Werner Vogels from Amazon had laid out back in 2006
 with his famous phrase: *"You build it, you run it."* Basically developers were
 put on the hook for when their service blows up in production, creating a
 natural incentive for them to write more reliable code.
+
+{{ image(url="/img/ybyr.png", no_hover=true) }}
 
 But as the story goes, we shifted left a bit too far. 
 
