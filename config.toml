@@ -33,7 +33,7 @@ styles = ["presentation.css", "presence.css"]
 
 # Set this to the public HTTPS origin of the Phoenix app to enable presence.
 # For example: "https://presence.example.com"
-presence_server_url = "https://deploy.vsyrakis.dev"
+presence_server_url = "https://presence.vsyrakis.dev"
 
 [extra.nav]
 links = [
