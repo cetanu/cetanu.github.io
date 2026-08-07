@@ -125,6 +125,12 @@
 		{%- endfor %}
 	{%- endif %}
 
+	{%- if config.extra.presence_server_url %}
+		<meta name="presence-server-url" content="{{ config.extra.presence_server_url | safe }}" />
+		<script defer src="https://cdn.jsdelivr.net/npm/phoenix@1.8.9/priv/static/phoenix.min.js" integrity="sha384-j9HzC7vYNQyQCMpIChBi7QagLMhWA1ozwr5spy4CwZjy5hngsUTETKFGR+9JHs1l" crossorigin="anonymous"></script>
+		<script defer src="{{ get_url(path='presence.js') | safe }}"></script>
+	{%- endif %}
+
 	<meta property="og:site_name" content="{{ config.title }}" />
 	<meta property="og:title" content="{% include 'partials/title.html' %}" />
 	<meta property="og:url" content="{{ current_url | default(value='/') | safe }}" />

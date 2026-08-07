@@ -29,7 +29,11 @@ show_reading_time = true
 show_share_button = true
 default_theme = "dark"
 scripts = ["presentation.js"]
-styles = ["presentation.css"]
+styles = ["presentation.css", "presence.css"]
+
+# Set this to the public HTTPS origin of the Phoenix app to enable presence.
+# For example: "https://presence.example.com"
+presence_server_url = "https://deploy.vsyrakis.dev"
 
 [extra.nav]
 links = [
