@@ -40,8 +40,8 @@
 
   channel.on("cursor", ({viewer_id: viewerId, x, y}) => {
     const cursor = getRemoteCursor(viewerId)
-    cursor.style.left = `${x * 100}%`
-    cursor.style.top = `${y * 100}%`
+    cursor.style.left = `${x * document.documentElement.scrollWidth}px`
+    cursor.style.top = `${y * document.documentElement.scrollHeight}px`
   })
 
   channel.onClose(() => {
@@ -67,8 +67,8 @@
 
     lastCursorSentAt = now
     channel.push("cursor", {
-      x: Math.min(Math.max(event.clientX / window.innerWidth, 0.000001), 0.999999),
-      y: Math.min(Math.max(event.clientY / window.innerHeight, 0.000001), 0.999999),
+      x: Math.min(Math.max(event.pageX / document.documentElement.scrollWidth, 0.000001), 0.999999),
+      y: Math.min(Math.max(event.pageY / document.documentElement.scrollHeight, 0.000001), 0.999999),
     })
   })
 
