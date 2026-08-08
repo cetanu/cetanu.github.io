@@ -39,14 +39,9 @@ presence_server_url = "https://presence.vsyrakis.dev"
 links = [
 	{ name = "Blog",     url = "@/blog/_index.md" },
 	{ name = "Shop",     url = "https://vsyrakis-shop.fourthwall.com" },
-    { name = "Links", menu = [
-        { name = "YouTube",  url = "https://youtube.com/@vsyrakis" },
-        { name = "GitHub",   url = "https://github.com/cetanu" },
-        { name = "LinkedIn", url = "https://www.linkedin.com/in/vsyrakis" },
-        { name = "Discord", url = "https://discord.gg/PzxgxA9qNv" },
-        { name = "CV",       url = "/cv.pdf" },
-    ]},
+	{ name = "Links",    url = "@/links.md" },
 	{ name = "PGP",      url = "@/pgp.md" },
+	{ name = "CV",      url = "/cv.pdf" },
     #{ url = "tags", name = "Tags" }
 ]
 
