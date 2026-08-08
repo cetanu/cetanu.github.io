@@ -38,7 +38,6 @@ presence_server_url = "https://presence.vsyrakis.dev"
 [extra.nav]
 links = [
 	{ name = "Blog",     url = "@/blog/_index.md" },
-	{ name = "Shop",     url = "https://vsyrakis-shop.fourthwall.com" },
 	{ name = "Links",    url = "@/links.md" },
 	{ name = "PGP",      url = "@/pgp.md" },
 	{ name = "CV",      url = "/cv.pdf" },

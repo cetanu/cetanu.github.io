@@ -83,6 +83,8 @@ main#main-content > h1:first-of-type {
 * [![GitHub](/img/social/github.svg) GitHub](https://github.com/cetanu)
 * [![LinkedIn](/img/social/linkedin.svg) LinkedIn](https://www.linkedin.com/in/vsyrakis)
 * [![Discord](/img/social/discord.svg) Discord Community](https://discord.gg/PzxgxA9qNv)
+* [![Merch](/img/social/shop.svg) Merch](https://vsyrakis-shop.fourthwall.com)
+* [![Keyboard](/img/social/keyboard.svg) "What keyboard do you use?"](/keyboard)
 
 </links-page>
 
