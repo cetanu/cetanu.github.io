@@ -56,6 +56,16 @@
       joined = true
     })
 
+  let viewerCount = 0
+
+  presence.onSync(() => {
+    viewerCount = presence.list().length
+    if (viewerCount <= 1) {
+      remoteCursors.forEach(cursor => cursor.remove())
+      remoteCursors.clear()
+    }
+  })
+
   presence.onLeave((viewerId, _current, _leftPresence) => {
     removeRemoteCursor(viewerId)
   })
@@ -63,7 +73,7 @@
   window.addEventListener("pointermove", event => {
     const now = performance.now()
 
-    if (!joined || now - lastCursorSentAt < 50) return
+    if (!joined || viewerCount <= 1 || now - lastCursorSentAt < 50) return
 
     lastCursorSentAt = now
     channel.push("cursor", {
