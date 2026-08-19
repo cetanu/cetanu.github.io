@@ -1,5 +1,5 @@
 +++
-title = ""
+title = "The moment that made Rust click for me"
 description = ""
 date = 2026-07-31
 template = "article.html"
@@ -13,9 +13,9 @@ go_to_top = true
 +++
 
 
-# Rust Didn't Click For Me Until AFTER I Worked On A Professional Project With It
+If you’ve ever tried to learn Rust, you probably know the standard playbook. I
+even made a [video](https://youtu.be/d9ahpl1gHVA?si=qFipk8o2CBqR3L6z) on it.
 
-If you’ve ever tried to learn Rust, you probably know the standard playbook.
 You read "The Book" (the official Rust Programming Language book). You work
 through a bunch of code katas. You fight the borrow checker on toy problems,
 eventually forcing your code to compile, and you think, *"Okay, I get it now."*
