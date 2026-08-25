@@ -36,13 +36,14 @@ they are the real reason to run Envoy.
 
 ## Compute at the Edge
 
-The phrase "edge compute" usually conjures up JavaScript running in a CDN's
-datacentre. Envoy provides a smaller and more infrastructure-focused version
-of the same idea.
+People associate the term "edge compute" with things like AWS Lambda, or
+Cloudflare workers, and so on. Envoy delivers the same functionality but as a
+smaller unit within infrastructure.
 
-Every HTTP request passing through Envoy travels through a chain of filters.
-A filter can inspect the request, change it, reject it, call another service,
-or produce a response without involving the upstream application at all.
+Every request passing through Envoy steps through a chain of filters.
+A filter can do all sorts of things - inspect the request, change it, reject
+it, call another service, or produce a response without involving the upstream
+application at all.
 
 Some of those filters are built in. Envoy can verify JWTs, enforce RBAC rules,
 apply rate limits, manipulate headers, compress responses, and emit consistent
