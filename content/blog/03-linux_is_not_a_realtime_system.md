@@ -2,6 +2,8 @@
 title = "Profit or Poverty: Realtime kernel patch"
 description = "An overview of the Linux scheduler's limitations and why realtime kernel patches are essential for time-critical applications."
 date = 2026-04-20
+slug = "linux_is_not_a_realtime_system"
+aliases = ["blog/2026-04-20-linux_is_not_a_realtime_system"]
 template = "article.html"
 
 [taxonomies]

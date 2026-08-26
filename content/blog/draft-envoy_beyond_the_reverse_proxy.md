@@ -2,6 +2,8 @@
 title = "Envoy Is More Than a Reverse Proxy"
 description = "The less obvious reasons to use Envoy: programmable compute at the edge and a production-grade HTTP client hiding beside your application."
 date = 2026-08-18
+slug = "envoy_beyond_the_reverse_proxy"
+aliases = ["blog/draft-envoy_beyond_the_reverse_proxy"]
 template = "article.html"
 render = false
 

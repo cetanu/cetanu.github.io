@@ -2,6 +2,8 @@
 title = "How to Avoid Sharding Yourself"
 description = "A deep dive into database sharding, tenant routing strategies, and why deterministic hashing might cause headaches when scaling multitenant architectures."
 date = 2026-07-11
+slug = "how_to_avoid_sharding_yourself"
+aliases = ["blog/2026-07-11-how_to_avoid_sharding_yourself"]
 template = "article.html"
 
 [taxonomies]

@@ -2,6 +2,8 @@
 title = "The moment that made Rust click for me"
 description = ""
 date = 2026-07-31
+slug = "learning-rust-on-the-job"
+aliases = ["blog/learning-rust-on-the-job"]
 template = "article.html"
 render = false
 

@@ -2,6 +2,8 @@
 title = "You don't know what DevOps means"
 description = "An exploration of the history of DevOps, how a cultural movement was rebranded into a job title, and why Platform Engineering is the course correction we needed."
 date = 2026-07-30
+slug = "you_dont_know_devops"
+aliases = ["blog/2026-07-27-you_dont_know_devops"]
 template = "article.html"
 render = true
 

@@ -2,6 +2,8 @@
 title = "Profit or Poverty: Time is Money (and why NTP isn't enough)"
 description = "Why NTP isn't accurate enough for trading, and how PTP (Precision Time Protocol) achieves sub-microsecond precision."
 date = 2026-07-07
+slug = "precision_time_protocol"
+aliases = ["blog/draft-precision_time_protocol"]
 template = "article.html"
 render = false
 

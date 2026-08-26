@@ -2,6 +2,8 @@
 title = "Profit or Poverty: The Need for Speed with Kernel Bypass"
 description = "How High-Frequency Trading uses kernel bypass to sidestep the Linux network stack and achieve nanosecond latency."
 date = 2026-07-07
+slug = "kernel_bypass"
+aliases = ["blog/draft-kernel_bypass"]
 template = "article.html"
 render = false
 

@@ -2,6 +2,8 @@
 title = "Profit or Poverty: False Sharing"
 description = "An exploration of false sharing in CPU caches, how it silently degrades performance, and why it matters in low-latency environments."
 date = 2026-07-07
+slug = "false_sharing"
+aliases = ["blog/2026-07-07-false_sharing"]
 template = "article.html"
 
 [taxonomies]

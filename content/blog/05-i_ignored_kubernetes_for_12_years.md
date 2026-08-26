@@ -2,6 +2,8 @@
 title = "For 12 years, I ignored Kubernetes"
 description = "My journey from viewing Kubernetes as overcomplicated hype to understanding its true value in modern infrastructure."
 date = 2026-06-30
+slug = "i_ignored_kubernetes_for_12_years"
+aliases = ["blog/2026-06-30-i_ignored_kubernetes_for_12_years"]
 template = "article.html"
 
 [taxonomies]

@@ -2,6 +2,8 @@
 title = "Profit or Poverty: NUMA"
 description = "An introduction to NUMA (Non-Uniform Memory Access) and why mastering it is a hard requirement for HFT micro-optimizations."
 date = 2026-04-17
+slug = "why_numa_is_important_in_trading"
+aliases = ["blog/2026-04-17-why_numa_is_important_in_trading"]
 template = "article.html"
 
 [taxonomies]

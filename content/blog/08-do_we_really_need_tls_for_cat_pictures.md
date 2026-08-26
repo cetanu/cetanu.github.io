@@ -2,6 +2,8 @@
 title = "Why Scrolling Cat Pictures Requires TLS"
 description = "A little history behind why the internet adopted TLS for all web traffic"
 date = 2026-07-22
+slug = "do_we_really_need_tls_for_cat_pictures"
+aliases = ["blog/2026-07-18-do_we_really_need_tls_for_cat_pictures"]
 template = "article.html"
 render = true
 
