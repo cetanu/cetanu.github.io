@@ -1,6 +1,6 @@
 +++
 title = "Envoy Is More Than a Reverse Proxy"
-description = "The less obvious reasons to use Envoy: programmable compute at the edge and a production-grade HTTP client hiding beside your application."
+description = "Envoy is a programmable traffic boundary where platform policy becomes consistent request behaviour, on ingress and egress."
 date = 2026-08-18
 slug = "envoy_beyond_the_reverse_proxy"
 aliases = ["blog/draft-envoy_beyond_the_reverse_proxy"]
@@ -14,232 +14,215 @@ tags = ["envoy", "networking", "architecture", "infrastructure"]
 go_to_top = true
 +++
 
-Ask someone what Envoy does and they will probably tell you that it is a
-reverse proxy or a load balancer.
+Kubernetes can put every service on the same network. It cannot make every
+service agree on what a timeout means.
 
-That answer is correct in the same way that calling a smartphone a telephone
-is correct. It describes the original shape of the thing, but misses most of
-the reasons you might choose one today.
+One team writes a Go service. Another writes a Python worker. A third keeps a
+legacy Java application alive. They all make HTTP calls, but each one ends up
+with a slightly different collection of timeouts, retries, TLS settings,
+connection pools, and telemetry.
 
-Envoy can accept a request and forward it to one of several servers. So can
-NGINX, HAProxy, a cloud load balancer, and about a thousand other pieces of
-software. If that was all Envoy did, choosing it would mostly be a matter of
-which configuration language you dislike the least.
+That is where Envoy becomes more interesting than its usual description.
 
-The more interesting way to think about Envoy is as a **programmable boundary
-around your application**.
-
-At the ingress boundary it can execute common request-processing logic close
-to users, before traffic reaches your application. At the egress boundary it
-can turn an ordinary HTTP call into a carefully managed production dependency.
-
-Those two uses are much less visible than load balancing, but in many systems
-they are the real reason to run Envoy.
-
-## Compute at the Edge
-
-People associate the term "edge compute" with things like AWS Lambda, or
-Cloudflare workers, and so on. Envoy delivers the same functionality but as a
-smaller unit within infrastructure.
-
-Every request passing through Envoy steps through a chain of filters.
-A filter can do all sorts of things - inspect the request, change it, reject
-it, call another service, or produce a response without involving the upstream
-application at all.
-
-Some of those filters are built in. Envoy can verify JWTs, enforce RBAC rules,
-apply rate limits, manipulate headers, compress responses, and emit consistent
-access logs and metrics. The external authorization filter can ask a dedicated
-service whether a request should be allowed. The external processing filter
-can send headers or bodies to a gRPC service which inspects or transforms them.
-
-When the built-in filters are not enough, you can extend the request path with
-Lua, WebAssembly, or a native extension.
-
-This makes the proxy a place where small pieces of computation can run at the
-network boundary:
+Envoy is a programmable traffic boundary: a place where platform policy can
+become consistent request behaviour.
 
 ```text
-client -> authentication -> rate limit -> transform -> application
+client       -> Envoy -> application
+application  -> Envoy -> dependency
 ```
 
-Imagine that ten services expose public APIs. Each one needs to verify the
-same token, reject requests from suspended accounts, attach a tenant ID, add
-security headers, and translate an old API path to a new one.
+At the ingress boundary, Envoy can authenticate, authorize, route, transform,
+and observe requests before they reach an application. At the egress boundary,
+it can give ordinary application HTTP calls production-grade network
+behaviour.
 
-You could implement all of that in ten codebases. You could also put the
-mechanical, protocol-level parts in Envoy's filter chain and leave each
-application to deal with its own business logic.
+The point is not that Envoy has a long list of features. The point is that the
+same kind of policy can be applied at the boundary where traffic already has
+to pass.
 
-That distinction matters. Envoy should not become the mysterious place where
-your pricing model and shopping-cart rules live. Filters sit on the request
-path, so expensive or unreliable work there adds latency or breaks every
-request. They are best suited to bounded work that belongs to the boundary:
-identity verification, admission control, protocol translation, routing,
-normalisation, and observability.
+## The request is already a program
 
-This is compute at the edge without pretending that the edge should contain
-your entire application.
+Consider a request arriving at a public API. Before the application runs its
+business logic, someone may need to answer several questions:
 
-## Your HTTP Client Is Infrastructure
+- Is the caller authenticated?
+- Is this identity allowed to access this route?
+- Which version of the API should receive the request?
+- Is this tenant over its rate limit?
+- Should a header be added, removed, or normalised?
+- What should be recorded for debugging and operations?
 
-The other underappreciated use of Envoy is on the opposite side of the
-application.
+These are not all application questions. Many are properties of the traffic
+boundary.
 
-Applications spend a lot of time making outbound HTTP calls. A payment service
-calls a bank, an API calls an identity provider, and nearly everything calls an
-object store or another internal service.
+Envoy processes requests through a chain of filters. A filter can inspect a
+request, change it, reject it, call an external service, or produce a response
+without involving the upstream application.
 
-The code often looks harmless:
+```text
+request -> identity -> authorization -> rate limit -> routing -> application
+```
+
+Some of this behaviour comes from built-in filters. Envoy can validate JWTs,
+enforce RBAC rules, apply rate limits, manipulate headers, compress responses,
+and emit consistent access logs and metrics. External authorization and
+processing filters allow a dedicated service to participate in the request
+path. Lua, WebAssembly, and native extensions cover cases that need custom
+logic.
+
+That gives platform engineers a useful seam. Common protocol-level policy can
+be changed in the traffic layer instead of being copied into ten application
+codebases.
+
+The seam also needs discipline. A filter runs on the request path, so slow,
+fragile, or overly clever logic there affects every request. Envoy is a good
+place for identity verification, admission control, routing, normalisation,
+protocol translation, and observability. It is a poor place for shopping-cart
+rules or a pricing algorithm.
+
+This is bounded computation at the boundary, not an invitation to move the
+whole application into the proxy.
+
+## The outbound call is also a policy boundary
+
+The same problem appears on the other side of an application.
+
+The code may look like this:
 
 ```text
 response = http.get("https://some-dependency.example/data")
 ```
 
-But a reliable HTTP request is not a single operation. It is a collection of
-policies and state:
+But a reliable HTTP request is not one operation. It is a bundle of decisions:
 
-- How long should DNS resolution and connection establishment take?
-- How many connections should be kept open, and for how long?
+- How long may DNS resolution and connection establishment take?
+- How long may the complete request take?
+- Which connections can be reused?
 - Can requests share an HTTP/2 connection?
-- What is the timeout for the entire request?
 - Which failures are safe to retry?
 - How much backoff should happen between attempts?
-- How do we stop retries from multiplying an outage?
-- Should an unhealthy endpoint temporarily be removed?
-- Where are TLS certificates and authentication credentials managed?
-- Which metrics, traces, and logs describe the call?
+- How do we prevent retries from amplifying an outage?
+- Should an unhealthy endpoint be removed temporarily?
+- Where are TLS credentials and certificates managed?
+- Which metrics, logs, and traces describe the call?
 
-Most mature HTTP client libraries can answer many of these questions. The
-problem is that every application must answer them correctly, in every
-language, and keep answering them correctly as the system changes.
+Most mature client libraries can answer many of these questions. The problem
+is that every application must answer them correctly, in every language, and
+keep answering them correctly as the system changes.
 
-A Go service, a Python worker, and a legacy Java application can easily end up
-with three different timeout policies and three different interpretations of
-a retryable failure. One may reuse connections correctly, another may silently
-open a new connection for every request, and the third may retry `POST`
-requests until an overloaded dependency becomes a crater.
+In a Kubernetes environment, that inconsistency becomes an operational
+problem. A Go service, a Python worker, and a legacy Java application can have
+three different timeout policies and three different interpretations of a
+retryable failure. One may reuse connections correctly. Another may open a new
+connection for every request. A third may retry a non-idempotent operation
+until an already overloaded dependency becomes a crater.
 
-## Put Envoy on the Other Side
-
-Instead of sending outbound traffic directly to its destination, the
-application can send it through a local or shared Envoy egress proxy:
+Putting Envoy on the egress path gives the platform a place to own the network
+mechanism and its defaults:
 
 ```text
 application -> Envoy -> external API or internal service
 ```
 
-The application still makes an ordinary HTTP call. Envoy takes responsibility
-for the network behaviour around it.
-
-Envoy maintains connection pools for upstream hosts and understands the
-different models of HTTP/1.1, HTTP/2, and HTTP/3. It can enforce connection and
-request timeouts, retry selected failures with backoff, cap retries with a
-retry budget, and apply circuit-breaking limits. Active health checks can
-probe known endpoints, while passive health checking, called outlier
-detection, can temporarily eject an endpoint that is failing real traffic.
-
-It can also originate TLS, present client certificates for mTLS, verify server
-certificates, attach or validate identity, and apply authorization policy. The
-same layer produces uniform metrics and access logs regardless of which
-language initiated the request.
-
-The result is a surprisingly useful separation of concerns:
+The application still decides what it wants to call. Envoy handles the
+behaviour around that call: connection pools, timeouts, selected retries,
+retry budgets, circuit-breaking limits, health checks, outlier detection, TLS,
+authentication, and consistent telemetry.
 
 ```text
-application:  what request should I make?
-Envoy:         how should that request behave on the network?
+application: what request should I make?
+Envoy:       how should that request behave on the network?
 ```
 
-This does not mean the application is absolved of responsibility. It still
-needs a deadline, and that deadline needs to include any time Envoy spends on
-retries. It still needs to know whether an operation is safe to repeat. It
-still needs to handle failure instead of assuming that a proxy can turn an
-unreliable dependency into a reliable one.
+This is a separation of concerns, not a transfer of responsibility. The
+application still needs an overall deadline. It still needs to know whether an
+operation is safe to repeat. It still needs to handle failure. Envoy can
+centralise the mechanism and the policy defaults; it cannot infer the business
+meaning of a timeout.
 
-Envoy centralises the mechanism and the default policy. The application keeps
-the business meaning.
+## Retries expose the boundary
 
-## Retries Are Not Magic
+Retries show both the value and the limit of this approach.
 
-Retries are a good example of why this split needs care.
+If a `GET` fails before receiving a response, trying another healthy endpoint
+may be sensible. If a request to charge a credit card times out, no response
+does not prove that the charge failed. Repeating it may charge the customer
+twice.
 
-If a `GET` request fails before receiving a response, trying another healthy
-endpoint may be sensible. If a request to charge a credit card times out, the
-absence of a response does not prove that the charge failed. Blindly repeating
-it may charge the customer twice.
+HTTP alone cannot resolve that ambiguity. The application must use idempotent
+operations or idempotency keys, and the platform must define narrow retry
+conditions. Every retry must fit inside one overall deadline and a bounded
+retry budget.
 
-Envoy cannot infer that distinction from HTTP alone. The application must use
-idempotent operations or idempotency keys, and the platform must define narrow
-retry conditions. Every retry should fit inside one overall timeout and a
-bounded retry budget, otherwise the mechanism intended to survive an outage
-will amplify it.
+Otherwise the policy intended to survive an outage amplifies it.
 
-The same warning applies to health checks and circuit breakers. They improve
-how a system responds to failure; they do not remove failure. A bad policy,
-consistently deployed everywhere, is still a bad policy.
+This is why Envoy should be understood as a policy boundary, not a reliability
+machine. Health checks, circuit breakers, and retries improve how a system
+responds to failure. They do not remove failure, and a bad policy consistently
+deployed is still a bad policy.
 
-## Why Not Just Use a Library?
+## What Kubernetes gives you—and what it does not
 
-Sometimes a library is exactly the right choice.
+Kubernetes provides powerful primitives for scheduling workloads, discovering
+services, and controlling rollout. Those primitives do not automatically
+standardise the network behaviour implemented inside each workload.
 
-If you have one application written in one language, its HTTP client already
-does connection pooling properly, and the team owns a small number of stable
-dependencies, adding another process may create more operational work than it
-removes.
+Envoy complements Kubernetes by giving platform teams a programmable data
+plane. It can run at an ingress gateway, beside a workload, as an egress
+gateway, or as part of a service mesh. The deployment shape can change without
+changing the basic idea: traffic crosses a boundary, and policy is applied
+there.
 
-Envoy becomes more compelling when the same networking concerns repeat across
-many services or runtimes. It is particularly useful when:
+That also means Envoy does not require adopting an entire service-mesh product.
+A small deployment may use static configuration in front of a few services. A
+larger platform may use dynamic configuration, sidecars, gateways, and a
+control plane to manage changing endpoints and policies.
 
-- services are written in several languages;
+A service mesh is one system built around Envoy's data plane. Envoy remains
+useful when the mesh is not the problem you are trying to solve.
+
+## When Envoy earns its place
+
+Envoy is not automatically the right answer for every application. A single
+service in one language, with a small number of stable dependencies and a
+well-behaved HTTP client, may not benefit from another process in its failure
+path.
+
+Envoy becomes more compelling when networking concerns repeat across teams or
+runtimes:
+
 - security policy must be applied consistently;
+- services use several languages or client libraries;
 - upstream endpoints change dynamically;
-- operators need one set of metrics for outbound traffic;
+- operators need one view of inbound or outbound traffic;
 - mTLS and certificate rotation should not live in application code;
-- retry, timeout, and circuit-breaking policy needs central ownership;
-- request processing must be changed without rebuilding every application.
+- timeout, retry, and overload policy needs platform ownership;
+- request processing must change without rebuilding every application.
 
-There is a cost. Envoy consumes memory and CPU, configuration can become
-complicated, and the proxy itself becomes part of the failure path. A sidecar
-per workload also increases the number of processes you need to operate.
+There is a real cost. Envoy consumes memory and CPU, configuration can become
+complicated, and every proxy becomes part of the traffic path. A sidecar per
+workload increases the number of processes a team must operate.
 
-The case for Envoy is not that every application deserves a sidecar. It is
-that networking behaviour is often shared infrastructure, even when we have
+The case for Envoy is therefore not that every application deserves a sidecar.
+It is that network behaviour is shared infrastructure, even when we have
 accidentally implemented it as application code.
 
-## This Is Bigger Than a Service Mesh
+## Envoy is where policy becomes behaviour
 
-Many people first encounter Envoy hidden underneath a service mesh. That can
-make its useful features look inseparable from Kubernetes, sidecar injection,
-and a large control plane.
+Calling Envoy a reverse proxy focuses on the simplest thing it does: moving a
+request from one socket to another.
 
-They are not.
+Its more valuable role is to make the traffic around an application coherent.
 
-You can run Envoy at the edge in front of many services, beside a single
-application, as a shared egress gateway, or as part of a larger mesh. Static
-configuration is enough for small deployments; dynamic configuration becomes
-valuable when endpoints and policies change frequently.
-
-A service mesh is one product assembled around a programmable data plane.
-Envoy is the data plane. You can use the part that solves your problem without
-adopting the entire product category.
-
-## Conclusion
-
-Calling Envoy a reverse proxy focuses on the least interesting thing it does:
-moving a request from one socket to another.
-
-Its real value is in everything it can do while that request crosses a
-boundary.
-
-On ingress, Envoy gives you a programmable filter chain where common,
-protocol-level computation can happen close to the edge. On egress, it can
-wrap ordinary application HTTP calls in connection pooling, timeouts, bounded
-retries, health checking, circuit breaking, authentication, encryption, and
+On ingress, Envoy provides a programmable filter chain where common,
+protocol-level computation can happen before the request reaches the service.
+On egress, it wraps ordinary HTTP calls in connection management, deadlines,
+bounded retries, health checking, circuit breaking, identity, encryption, and
 consistent observability.
 
-You should not use Envoy merely because you need to forward some traffic. Use
-it when you want the network around your application to behave like a coherent
-platform instead of a pile of unrelated client libraries and middleware.
+Kubernetes gives workloads a common operating environment. Envoy gives the
+traffic around those workloads a place for shared policy.
 
-That is a much more interesting job than load balancing.
+That is the less obvious reason to use it: not because it forwards traffic,
+but because it turns platform decisions into repeatable request behaviour.
