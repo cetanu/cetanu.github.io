@@ -78,6 +78,7 @@ main#main-content > h1:first-of-type {
 <links-page>
 
 * [![Twitch](/img/social/twitch.svg) Twitch](https://twitch.tv/vsyrakis)
+* [![Kick](/img/social/kick.svg) Kick](https://kick.com/vsyrakis)
 * [![YouTube](/img/social/youtube.svg) YouTube](https://youtube.com/@vsyrakis)
 * [![X](/img/social/x.svg) X](https://x.com/vasilios_s)
 * [![GitHub](/img/social/github.svg) GitHub](https://github.com/cetanu)
