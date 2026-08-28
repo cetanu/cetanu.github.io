@@ -147,17 +147,17 @@ and delved into some of the systems that I built whilst there.
 ## Frequently Asked Questions
 
 ### What keyboard is that?
-I use a [Nuphy](https://nuphy.com?sca_ref=11306305.p2hPK9CKOM&utm_source=affiliate&utm_medium=kol&utm_campaign=nuphy_affiliate) keyboard.
+I use a [Nuphy](/nuphy) keyboard.
 
-Most of the times I stream, I'm probably using a low-profile [Kick75](https://nuphy.com/products/nuphy-kick75?sca_ref=11306305.p2hPK9CKOM&sca_source=blogindex&utm_source=affiliate&utm_medium=kol&utm_campaign=nuphy_affiliate)
+Most of the times I stream, I'm probably using a low-profile [Kick75](/nuphy-kick75)
 with brown switches.
 
-[{{ image(url="/img/nuphy-kick75.webp", alt="kick75", no_hover=true) }}](https://nuphy.com/products/nuphy-kick75?sca_ref=11306305.p2hPK9CKOM&sca_source=blogindex&utm_source=affiliate&utm_medium=kol&utm_campaign=nuphy_affiliate)
+[{{ image(url="/img/nuphy-kick75.webp", alt="kick75", no_hover=true) }}](/nuphy-kick75)
 
-I also own an [Air75 V3](https://nuphy.com/products/nuphy-air75-v3?sca_ref=11306305.p2hPK9CKOM&sca_source=blogindex&utm_source=affiliate&utm_medium=kol&utm_campaign=nuphy_affiliate)
-which I use as a portable keyboard, wrapped in a [NuFolio](https://nuphy.com/products/extra-nufolio-v4-for-air75-v3?sca_ref=11306305.p2hPK9CKOM&sca_source=blogindex&utm_source=affiliate&utm_medium=kol&utm_campaign=nuphy_affiliate)
+I also own an [Air75 V3](/nuphy-air75-v3)
+which I use as a portable keyboard, wrapped in a [NuFolio](/nuphy-nufolio-v4)
 
-[{{ image(url="/img/nuphy-airv3.webp", alt="air75 v3", no_hover=true) }}](https://nuphy.com/products/nuphy-air75-v3?sca_ref=11306305.p2hPK9CKOM&sca_source=blogindex&utm_source=affiliate&utm_medium=kol&utm_campaign=nuphy_affiliate)
+[{{ image(url="/img/nuphy-airv3.webp", alt="air75 v3", no_hover=true) }}](/nuphy-air75-v3)
 
 ### What mouse do you use?
 My mouse is a [Steelseries Rival 3 Gen 2](https://steelseries.com/en-au/gaming-mice/rival-3-gen-2)
@@ -399,5 +399,5 @@ Yes, I play games, 100% on Linux
 </div>
 
 ### What are those glasses you sometimes wear?
-Ra Optics - Sol [Daylight](https://raoptics.com/products/sol-x-ra-daylight) & [Sunset](https://raoptics.com/products/sol-x-ra-sunset)
+Ra Optics - Sol [Daylight](/raoptics-daylight) & [Sunset](/raoptics-sunset)
 

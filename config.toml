@@ -41,7 +41,7 @@ show_feed = false
 show_repo = false
 links = [
 	{ name = "Blog",     url = "@/blog/_index.md" },
-	{ name = "Links",    url = "@/links.md" },
+	{ name = "Links",    url = "@/links/_index.md" },
 	{ name = "PGP",      url = "@/pgp.md" },
 	{ name = "CV",      url = "/cv.pdf" },
     #{ url = "tags", name = "Tags" }

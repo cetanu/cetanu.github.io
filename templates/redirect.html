@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Redirecting...</title>
+    <link rel="canonical" href="{{ page.extra.redirect_to }}">
+    
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-70KXRZ7CZM"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-70KXRZ7CZM', { 'send_page_view': true });
+
+        const targetUrl = "{{ page.extra.redirect_to | safe }}";
+        let redirected = false;
+
+        function redirect() {
+            if (!redirected) {
+                redirected = true;
+                window.location.replace(targetUrl);
+            }
+        }
+
+        // Send affiliate_redirect event to GA4
+        gtag('event', 'affiliate_redirect', {
+            'event_category': 'affiliate',
+            'event_label': window.location.pathname,
+            'destination_url': targetUrl,
+            'event_callback': redirect
+        });
+
+        // Fallback in case GA is blocked or takes too long to respond
+        setTimeout(redirect, 500);
+    </script>
+    <noscript>
+        <meta http-equiv="refresh" content="0; url={{ page.extra.redirect_to }}">
+    </noscript>
+</head>
+<body>
+    <p>Redirecting to <a href="{{ page.extra.redirect_to }}">{{ page.extra.redirect_to }}</a>...</p>
+</body>
+</html>
