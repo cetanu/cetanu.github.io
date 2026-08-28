@@ -43,7 +43,7 @@ links = [
 	{ name = "Blog",     url = "@/blog/_index.md" },
 	{ name = "Links",    url = "@/links/_index.md" },
 	{ name = "PGP",      url = "@/pgp.md" },
-	{ name = "CV",      url = "/cv.pdf" },
+	{ name = "CV",      url = "/cv" },
     #{ url = "tags", name = "Tags" }
 ]
 

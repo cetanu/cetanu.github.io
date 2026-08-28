@@ -77,14 +77,14 @@ main#main-content > h1:first-of-type {
 
 <links-page>
 
-* [![Twitch](/img/social/twitch.svg) Twitch](https://twitch.tv/vsyrakis)
-* [![Kick](/img/social/kick.svg) Kick](https://kick.com/vsyrakis)
-* [![YouTube](/img/social/youtube.svg) YouTube](https://youtube.com/@vsyrakis)
-* [![X](/img/social/x.svg) X](https://x.com/vasilios_s)
-* [![GitHub](/img/social/github.svg) GitHub](https://github.com/cetanu)
-* [![LinkedIn](/img/social/linkedin.svg) LinkedIn](https://www.linkedin.com/in/vsyrakis)
-* [![Discord](/img/social/discord.svg) Discord Community](https://discord.gg/PzxgxA9qNv)
-* [![Merch](/img/social/shop.svg) Merch](https://vsyrakis-shop.fourthwall.com)
+* [![Twitch](/img/social/twitch.svg) Twitch](/twitch)
+* [![Kick](/img/social/kick.svg) Kick](/kick)
+* [![YouTube](/img/social/youtube.svg) YouTube](/youtube)
+* [![X](/img/social/x.svg) X](/x)
+* [![GitHub](/img/social/github.svg) GitHub](/github)
+* [![LinkedIn](/img/social/linkedin.svg) LinkedIn](/linkedin)
+* [![Discord](/img/social/discord.svg) Discord Community](/discord)
+* [![Merch](/img/social/shop.svg) Merch](/merch)
 * [![Keyboard](/img/social/keyboard.svg) "What keyboard do you use?"](/keyboard)
 
 </links-page>

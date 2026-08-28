@@ -199,7 +199,7 @@ Neovim
 
 ### What plugins do you use? Where are your dotfiles?
 
-[My dotfiles are here](https://github.com/cetanu/dotfiles)
+[My dotfiles are here](/dotfiles)
 
 What I would consider my essential plugins are:
 
