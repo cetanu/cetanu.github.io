@@ -84,6 +84,7 @@ main#main-content > h1:first-of-type {
 * [![GitHub](/img/social/github.svg) GitHub](/github)
 * [![LinkedIn](/img/social/linkedin.svg) LinkedIn](/linkedin)
 * [![Discord](/img/social/discord.svg) Discord Community](/discord)
+* [![Content Schedule](/img/social/kanban.svg) Content Schedule](/schedule)
 * [![Merch](/img/social/shop.svg) Merch](/merch)
 * [![Keyboard](/img/social/keyboard.svg) "What keyboard do you use?"](/keyboard)
 
