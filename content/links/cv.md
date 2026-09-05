@@ -2,5 +2,5 @@
 aliases = ["cv", "resume"]
 template = "redirect.html"
 [extra]
-redirect_to = "/cv.pdf"
+redirect_to = "/vasilios_syrakis_cv.pdf"
 +++

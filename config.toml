@@ -27,7 +27,6 @@ emoji_favicon = "🌘"
 accent_color = "plum"
 show_reading_time = true
 show_share_button = true
-default_theme = "dark"
 scripts = ["presentation.js"]
 styles = ["presentation.css", "presence.css"]
 
@@ -36,12 +35,12 @@ styles = ["presentation.css", "presence.css"]
 presence_server_url = "https://presence.vsyrakis.dev"
 
 [extra.nav]
-show_theme_switcher = true
 show_feed = false
 show_repo = false
 links = [
 	{ name = "Blog",     url = "@/blog/_index.md" },
 	{ name = "Links",    url = "@/links/_index.md" },
+	{ name = "FAQ",      url = "@/faq.md" },
 	{ name = "PGP",      url = "@/pgp.md" },
 	{ name = "CV",      url = "/cv" },
     #{ url = "tags", name = "Tags" }

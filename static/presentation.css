@@ -50,3 +50,9 @@ body.presentation-mode article > *.active-element {
     z-index: 10;
     position: relative;
 }
+
+main details,
+details {
+    margin-block: .5rem;
+}
+

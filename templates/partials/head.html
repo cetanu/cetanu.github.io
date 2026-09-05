@@ -101,10 +101,6 @@
 		{%- endif -%}
 	{%- endif %}
 
-	{%- if config.extra.default_theme or config.extra.nav.show_theme_switcher %}
-		{%- set scripts = scripts | concat(with=["theme-switcher.js"]) %}
-	{%- endif %}
-
 	{%- if page.extra.comments.id %}
 		{%- set scripts = scripts | concat(with=["comments.js"]) %}
 	{%- endif %}

@@ -1,6 +1,5 @@
 +++
 title = "Home"
-aliases = ["faq"]
 +++
 
 {% crt() %}
@@ -135,269 +134,75 @@ aliases = ["faq"]
 
 # Vasilios Syrakis
 
-Welcome to my personal site. I am a Senior Systems / Platforms Engineer / SRE
-based in Sydney, Australia.
+I'm a site reliability, systems, and platform engineer based in Sydney,
+Australia.
 
-You might know me from my [viral video](https://www.youtube.com/watch?v=55pTFVoclvE) 
-on YouTube where I talked about getting laid off by Atlassian after 8 years,
-and delved into some of the systems that I built whilst there.
+You might know me from a [YouTube
+video](https://www.youtube.com/watch?v=55pTFVoclvE) about being laid off after
+eight years at Atlassian. In it, I talked through some of the systems I helped
+build there.
 
 {{ image(url="/img/versailles.png", alt="me", no_hover=true) }}
 
-## Frequently Asked Questions
+## What you'll find here
 
-### What keyboard is that?
-I use a [Nuphy](/nuphy) keyboard.
+I publish technical articles and short essays here, and usually record a video
+to go with them. You can follow new posts through the [RSS feed](/atom.xml).
 
-Most of the times I stream, I'm probably using a low-profile [Kick75](/nuphy-kick75)
-with brown switches.
+You can see what content I plan to produce in [this kanban board](/schedule).
 
-[{{ image(url="/img/nuphy-kick75.webp", alt="kick75", no_hover=true) }}](/nuphy-kick75)
+## My career history
 
-I also own an [Air75 V3](/nuphy-air75-v3)
-which I use as a portable keyboard, wrapped in a [NuFolio](/nuphy-nufolio-v4)
+My path hasn't been exactly linear. I never finished high school, let alone
+university. If you're interested in how I ended up where I am, here's the
+story.
 
-[{{ image(url="/img/nuphy-airv3.webp", alt="air75 v3", no_hover=true) }}](/nuphy-air75-v3)
+At 16, two weeks of work experience led to my first job, doing graphic design.
+I did that for two years before deciding it wasn't for me, then took an IT
+helpdesk traineeship at ANSTO. After a year, they offered to promote me from
+trainee to a regular employee, doubling my pay, but I turned it down to go look
+for work on my own.
 
-### What mouse do you use?
-My mouse is a [Steelseries Rival 3 Gen 2](https://steelseries.com/en-au/gaming-mice/rival-3-gen-2)
+In hindsight, turning down the offer from ANSTO was a mistake. I worked in some
+roles I didn't enjoy before ending up at Fujitsu doing helpdesk again. About
+half a year later, I joined a managed service provider as an associate sysadmin,
+managing Windows fleets on VMware and the company's own hardware.
 
-[{{ image(url="/img/steelseries-rival.webp", alt="rival", no_hover=true) }}](https://steelseries.com/en-au/gaming-mice/rival-3-gen-2)
+That MSP job was where I taught myself how to code properly. I started with
+PowerShell since I was working with Windows Server. I later moved on to Python,
+taking a free Codecademy course, and then trying to rewrite some of my
+PowerShell scripts. I bought a copy of [Flask Web
+Development](/flask-web-development) and started building internal tools to
+make my job easier. For example, I wrote a little app to manage a multi-tenant
+BIND DNS server. I also picked up NGINX and MySQL (setting up a marketing site
+for Optus at one point), and eventually went deep into Puppet, Chef, and
+SaltStack. Around this time, AWS was starting to look like an existential
+threat to the company (Cloud was new, our service was managing racks in the
+datacenter).
 
-### What are your PC specs?
-#### Machine
-|               |                              |
-| :------------ | :--------------------------- |
-| __Mainboard__ | Gigabyte X870 AORUS ELITE    |
-| __Processor__ | AMD Ryzen 7 9800X3D          |
-| __Graphics__  | Sapphire Radeon RX 9070 XT   |
-| __Memory__    | Klevv 32GB DDR5 6000Mhz CL30 |
-| __Case__      | NZXT H6 Flow                 |
-| __Cooler__    | Cooler Master MasterLiquid   |
+From there, I moved to Tyro Payments as a member of the operations team. I
+showed a particular interest in scripting and automation, so they moved me to
+a new DevOps team. I spent my time there using salt-cloud (which had great
+VMware support at the time) to fully automate machine provisioning, booting VMs
+and then applying Puppet manifests based on their role.
 
-#### Peripherals
-|                |                              |
-| :------------- | :--------------------------- |
-| __Display__    | Samsung Odyssey G7 37"       |
-| __Microphone__ | Shure MV7+                   |
-| __Camera__     | Elgato Facecam 4K            |
+In 2018, I was poached by Atlassian to join their network edge team. Over the
+next eight years, I used that Flask and SaltStack background, picked up Envoy
+and AWS, and helped build the next iteration of Atlassian's Global Edge,
+eventually migrating all company traffic behind it. It handled over 50 billion
+requests a day. Along the way I learned Rust, eventually deploying a couple of
+Rust gRPC services to production at that same scale.
 
-{{ image(url="/img/desktop-pc.png", alt="my pc", no_hover=true) }}
+In March 2026, I was laid off by Atlassian and started working at Uptick, a SaaS
+company in the fire-safety industry.
 
-### What Operating System / Linux Distribution do you use?
-[Pop! OS](https://system76.com/pop) 24.04 with COSMIC desktop
+## Work with me
 
-{{ youtube(id="IyXzjnd6q3g") }}
+I'm open to occasional advisory and contract work. If you're dealing with a
+problem around Envoy, network edge, internal platforms, Python, or Rust, email
+me at **[syrakis@pm.me](mailto:syrakis@pm.me)** with some context. If I'm not
+the right person, I'll tell you.
 
-### What terminal do you use?
-
-[Ghostty](https://ghostty.org/)
-
-### What editor do you use?
-
-Neovim
-
-### What plugins do you use? Where are your dotfiles?
-
-[My dotfiles are here](/dotfiles)
-
-What I would consider my essential plugins are:
-
-* [telescope](https://github.com/nvim-telescope/telescope.nvim)
-* [neogit](https://github.com/TimUntersberger/neogit)
-* [gitsigns](https://github.com/lewis6991/gitsigns.nvim)
-* [blink.cmp](https://github.com/saghen/blink.cmp)
-* [key-menu](https://github.com/cetanu/key-menu.nvim)
-
-### What Neovim theme are you using?
-[sainnhe/edge](https://github.com/sainnhe/edge)
-
-[{{ image(url="/img/neovim-theme.png", alt="neovim", no_hover=true) }}](https://github.com/sainnhe/edge)
-
-### Do you play games? What are your favorites?
-Yes, I play games, 100% on Linux
-
-<style>
-.game-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  gap: 1.25rem;
-  margin-block: 1.5rem;
-}
-
-.game-card {
-  background-color: var(--fg-muted-1);
-  border-radius: var(--rounded-corner);
-  overflow: hidden;
-  box-shadow: var(--edge-highlight), var(--shadow);
-  transition: transform var(--transition-longer), box-shadow var(--transition-longer), border-color var(--transition-longer);
-  border: 1px solid var(--fg-muted-2);
-  display: flex;
-  flex-direction: column;
-  text-decoration: none !important;
-  color: inherit !important;
-}
-
-.game-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 0 0 1px var(--accent-color), var(--shadow-raised);
-  border-color: var(--accent-color);
-}
-
-.game-card-image-wrapper {
-  overflow: hidden;
-  width: 100%;
-  height: 110px;
-  position: relative;
-}
-
-.game-card-image-wrapper img {
-  margin: 0 !important;
-  box-shadow: none !important;
-  border-radius: 0 !important;
-  width: 100% !important;
-  height: 100% !important;
-  object-fit: cover !important;
-  transition: transform var(--transition-longer) !important;
-}
-
-.game-card:hover .game-card-image-wrapper img {
-  transform: scale(1.08);
-}
-
-.game-card-content {
-  padding: 0.75rem;
-  display: flex;
-  flex-direction: column;
-  flex-grow: 1;
-  justify-content: center;
-}
-
-.game-card-title {
-  font-size: 0.95rem;
-  font-weight: 600;
-  margin: 0;
-  line-height: 1.25;
-  color: var(--fg-color);
-}
-
-.game-card-subtitle {
-  font-size: 0.75rem;
-  color: var(--fg-muted-4);
-  margin-top: 0.25rem;
-  margin-bottom: 0;
-}
-</style>
-
-#### Currently playing
-
-<div class="game-grid">
-  <a href="https://store.steampowered.com/app/548430/Deep_Rock_Galactic/" target="_blank" rel="noopener" class="game-card">
-    <div class="game-card-image-wrapper">
-      <img src="/img/deep-rock-galactic.jpg" alt="Deep Rock Galactic">
-    </div>
-    <div class="game-card-content">
-      <div class="game-card-title">Deep Rock Galactic</div>
-      <div class="game-card-subtitle">+ Survivors, + Rogue Core</div>
-    </div>
-  </a>
-  <a href="https://store.steampowered.com/app/238960/Path_of_Exile/" target="_blank" rel="noopener" class="game-card">
-    <div class="game-card-image-wrapper">
-      <img src="/img/path-of-exile.jpg" alt="Path of Exile">
-    </div>
-    <div class="game-card-content">
-      <div class="game-card-title">Path of Exile</div>
-      <div class="game-card-subtitle">1 & 2</div>
-    </div>
-  </a>
-  <a href="https://store.steampowered.com/app/881100/Noita/" target="_blank" rel="noopener" class="game-card">
-    <div class="game-card-image-wrapper">
-      <img src="/img/noita.jpg" alt="Noita">
-    </div>
-    <div class="game-card-content">
-      <div class="game-card-title">Noita</div>
-      <div class="game-card-subtitle">Magical action roguelite</div>
-    </div>
-  </a>
-  <a href="https://store.steampowered.com/app/393380/Squad/" target="_blank" rel="noopener" class="game-card">
-    <div class="game-card-image-wrapper">
-      <img src="/img/squad.jpg" alt="Squad">
-    </div>
-    <div class="game-card-content">
-      <div class="game-card-title">Squad</div>
-      <div class="game-card-subtitle">Tactical FPS</div>
-    </div>
-  </a>
-  <a href="https://store.steampowered.com/app/427520/Factorio/" target="_blank" rel="noopener" class="game-card">
-    <div class="game-card-image-wrapper">
-      <img src="/img/factorio.jpg" alt="Factorio">
-    </div>
-    <div class="game-card-content">
-      <div class="game-card-title">Factorio</div>
-      <div class="game-card-subtitle">The factory must grow</div>
-    </div>
-  </a>
-</div>
-
-#### Old favorites
-
-<div class="game-grid">
-  <a href="https://store.steampowered.com/app/570/Dota_2/" target="_blank" rel="noopener" class="game-card">
-    <div class="game-card-image-wrapper">
-      <img src="/img/dota-2.jpg" alt="Dota 2">
-    </div>
-    <div class="game-card-content">
-      <div class="game-card-title">Dota 2</div>
-      <div class="game-card-subtitle">MOBA</div>
-    </div>
-  </a>
-  <a href="https://diablo2.blizzard.com/" target="_blank" rel="noopener" class="game-card">
-    <div class="game-card-image-wrapper">
-      <img src="/img/diablo-2.jpg" alt="Diablo 2">
-    </div>
-    <div class="game-card-content">
-      <div class="game-card-title">Diablo II</div>
-      <div class="game-card-subtitle">Action RPG classic</div>
-    </div>
-  </a>
-  <a href="https://store.steampowered.com/app/2310/QUAKE/" target="_blank" rel="noopener" class="game-card">
-    <div class="game-card-image-wrapper">
-      <img src="/img/quake-1.jpg" alt="Quake">
-    </div>
-    <div class="game-card-content">
-      <div class="game-card-title">Quake</div>
-      <div class="game-card-subtitle">Dark fantasy FPS</div>
-    </div>
-  </a>
-  <a href="https://store.steampowered.com/app/2200/Quake_III_Arena/" target="_blank" rel="noopener" class="game-card">
-    <div class="game-card-image-wrapper">
-      <img src="/img/quake-3.jpg" alt="Quake III Arena">
-    </div>
-    <div class="game-card-content">
-      <div class="game-card-title">Quake III Arena</div>
-      <div class="game-card-subtitle">Arena shooter classic</div>
-    </div>
-  </a>
-  <a href="https://store.steampowered.com/app/1127400/Mindustry/" target="_blank" rel="noopener" class="game-card">
-    <div class="game-card-image-wrapper">
-      <img src="/img/mindustry.jpg" alt="Mindustry">
-    </div>
-    <div class="game-card-content">
-      <div class="game-card-title">Mindustry</div>
-      <div class="game-card-subtitle">Factory tower defense</div>
-    </div>
-  </a>
-  <a href="https://store.steampowered.com/app/892970/Valheim/" target="_blank" rel="noopener" class="game-card">
-    <div class="game-card-image-wrapper">
-      <img src="/img/valheim.jpg" alt="Valheim">
-    </div>
-    <div class="game-card-content">
-      <div class="game-card-title">Valheim</div>
-      <div class="game-card-subtitle">Viking survival sandbox</div>
-    </div>
-  </a>
-</div>
-
-### What are those glasses you sometimes wear?
-Ra Optics - Sol [Daylight](/raoptics-daylight) & [Sunset](/raoptics-sunset)
-
+For sensitive matters that require encryption, [I have PGP tools which use my
+public key](/pgp). You can also request that I sign messages to verify they
+came from me and not an imposter.

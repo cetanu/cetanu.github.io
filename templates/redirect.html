@@ -3,25 +3,17 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="color-scheme" content="light dark">
+    <meta name="color-scheme" content="dark">
     <title>Redirecting...</title>
     <meta name="robots" content="noindex, nofollow">
     <link rel="canonical" href="{{ page.extra.redirect_to }}">
     <style>
         :root {
-            --bg-color: #ffffff;
-            --fg-color: #1a1a1a;
-            --link-color: #7b4397;
-            --muted-color: #666666;
-        }
-
-        @media (prefers-color-scheme: dark) {
-            :root {
-                --bg-color: #121212;
-                --fg-color: #f0f0f0;
-                --link-color: #c988e7;
-                --muted-color: #999999;
-            }
+            color-scheme: dark;
+            --bg-color: #121212;
+            --fg-color: #f0f0f0;
+            --link-color: #c988e7;
+            --muted-color: #999999;
         }
 
         body {
