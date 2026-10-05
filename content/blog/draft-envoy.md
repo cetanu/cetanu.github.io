@@ -1,3 +1,8 @@
++++
+title = "Envoy Draft Notes"
+render = false
++++
+
 creating some slides to educate my colleagues on envoy and kgateway.
 
 Here's the story.

@@ -1,3 +1,8 @@
++++
+title = "Envoy Talk Notes"
+render = false
++++
+
 For a 10-minute opening segment, your scope could be:
 
 ### Purpose

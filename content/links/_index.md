@@ -87,6 +87,7 @@ main#main-content > h1:first-of-type {
 * [![Content Schedule](/img/social/kanban.svg) Content Schedule](/schedule)
 * [![Merch](/img/social/shop.svg) Merch](/merch)
 * [![Keyboard](/img/social/keyboard.svg) "What keyboard do you use?"](/keyboard)
+* [40% off CodeCrafters!](/codecrafters)
 
 </links-page>
 

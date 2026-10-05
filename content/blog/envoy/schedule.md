@@ -1,3 +1,8 @@
++++
+title = "Envoy Talk Schedule"
+render = false
++++
+
 Envoy has become one of the most important building blocks in the
 cloud-native ecosystem. It powers service meshes, API gateways,
 ingress controllers and countless bespoke networking platforms
