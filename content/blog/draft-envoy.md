@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 +++
 title = "Envoy Draft Notes"
 render = false
@@ -6,12 +7,17 @@ render = false
 creating some slides to educate my colleagues on envoy and kgateway.
 
 Here's the story.
+=======
+# 
+>>>>>>> Stashed changes
 
 I recently migrated an ingress controller in kubernetes from nginx, which was
 deprecated, to envoy.
 
 just doing a straight swap, you won't really notice much because they're both
 still acting as http reverse proxies.
+
+# how envoy config is structured
 
 but there are some quite fundamental differences when you zoom in. For
 starters, instead of the ingress controller acting as both a controller and a
@@ -27,6 +33,8 @@ it just adds that new pod.
 The way envoy does this is by having a modular configuration structure, where
 each resource can be dynamically updated independently of the others.
 
+# intro to the main resources
+
 The core resources that envoy has are listeners and clusters.
 
 A listener is where requests are accepted. A listener binds to an address,
@@ -36,6 +44,8 @@ A cluster is where requests are forwarded. A cluster contains a collection of
 hosts or endpoints, which are discovered, health-checked, and load-balanced.
 
 At this point there isn't much of a difference to NGINX.
+
+# a peek into the extensibility of envoy
 
 Where envoy starts to differ is in its extensibility, especially in the fact
 that extensions can themselves be dynamically updated at any time without
@@ -49,10 +59,12 @@ or HCM.
 An envoy listener by default has no idea what HTTP is, that's the HCMs job;
 it's where all the HTTP codecs live.
 
-Within the HCM, you have HTTP filters, distinct from network filters. These
-filters are designed to work with the HTTP protocol and usually expect to be
-able to handle headers, the body, and trailers both of the request and
-response.
+Within the HCM, you have HTTP filters, distinct from network filters. The
+contract for these filters is that they receive the request object coming in,
+and the response object going out, and they can choose to read or mutate the
+headers, body, or trailers in each.
+
+# how envoy processes requests
 
 The most basic and fundamental HTTP filter is the Router filter. It has almost
 no configuration, and it tells Envoy that it should match the request against a
@@ -76,3 +88,21 @@ host or authority header. Inside a virtual host you have a collection of
 routes. Each individual route is evaluated against the request, and if all the
 criteria match, the defined action within that route is used to forward,
 redirect, or directly respond to the request.
+
+# 
+
+in-process, out-of-process extensions
+
+# in
+
+lua
+wasm
+dynamic-module
+golang
+local-ratelimit
+
+# out
+
+ext-extauthz
+ext-proc
+rate-limit
