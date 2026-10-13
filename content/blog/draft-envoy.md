@@ -1,4 +1,3 @@
-<<<<<<< Updated upstream
 +++
 title = "Envoy Draft Notes"
 render = false
@@ -6,10 +5,7 @@ render = false
 
 creating some slides to educate my colleagues on envoy and kgateway.
 
-Here's the story.
-=======
-# 
->>>>>>> Stashed changes
+# Here's the story.
 
 I recently migrated an ingress controller in kubernetes from nginx, which was
 deprecated, to envoy.
