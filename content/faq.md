@@ -13,12 +13,12 @@ aliases = ["setup"]
 }
 
 .game-card {
-  background-color: var(--fg-muted-1);
-  border-radius: var(--rounded-corner);
+  background-color: var(--case);
+  border-radius: 0.75rem;
   overflow: hidden;
-  box-shadow: var(--edge-highlight), var(--shadow);
-  transition: transform var(--transition-longer), box-shadow var(--transition-longer), border-color var(--transition-longer);
-  border: 1px solid var(--fg-muted-2);
+  box-shadow: inset 0 1px #ffffff12, 0 2px 8px #0003;
+  transition: transform 250ms ease, box-shadow 250ms ease, border-color 250ms ease;
+  border: 1px solid var(--edge);
   display: flex;
   flex-direction: column;
   text-decoration: none !important;
@@ -27,8 +27,8 @@ aliases = ["setup"]
 
 .game-card:hover {
   transform: translateY(-4px);
-  box-shadow: 0 0 0 1px var(--accent-color), var(--shadow-raised);
-  border-color: var(--accent-color);
+  box-shadow: 0 0 0 1px var(--orange), 0 4px 12px #0005;
+  border-color: var(--orange);
 }
 
 .game-card-image-wrapper {
@@ -45,7 +45,7 @@ aliases = ["setup"]
   width: 100% !important;
   height: 100% !important;
   object-fit: cover !important;
-  transition: transform var(--transition-longer) !important;
+  transition: transform 250ms ease !important;
 }
 
 .game-card:hover .game-card-image-wrapper img {
@@ -65,12 +65,12 @@ aliases = ["setup"]
   font-weight: 600;
   margin: 0;
   line-height: 1.25;
-  color: var(--fg-color);
+  color: var(--ink);
 }
 
 .game-card-subtitle {
   font-size: 0.75rem;
-  color: var(--fg-muted-4);
+  color: var(--muted);
   margin-top: 0.25rem;
   margin-bottom: 0;
 }
@@ -85,11 +85,11 @@ I use a [Nuphy](/nuphy) keyboard.
 
 Most of the times I stream, I'm probably using a low-profile [Kick75](/nuphy-kick75) with brown switches.
 
-[{{ image(url="/img/nuphy-kick75.webp", alt="kick75", no_hover=true) }}](/nuphy-kick75)
+[![kick75](/img/nuphy-kick75.webp)](/nuphy-kick75)
 
 I also own an [Air75 V3](/nuphy-air75-v3) which I use as a portable keyboard, wrapped in a [NuFolio](/nuphy-nufolio-v4).
 
-[{{ image(url="/img/nuphy-airv3.webp", alt="air75 v3", no_hover=true) }}](/nuphy-air75-v3)
+[![air75 v3](/img/nuphy-airv3.webp)](/nuphy-air75-v3)
 
 </details>
 
@@ -98,7 +98,7 @@ I also own an [Air75 V3](/nuphy-air75-v3) which I use as a portable keyboard, wr
 
 My mouse is a [Steelseries Rival 3 Gen 2](https://steelseries.com/en-au/gaming-mice/rival-3-gen-2).
 
-[{{ image(url="/img/steelseries-rival.webp", alt="rival", no_hover=true) }}](https://steelseries.com/en-au/gaming-mice/rival-3-gen-2)
+[![rival](/img/steelseries-rival.webp)](https://steelseries.com/en-au/gaming-mice/rival-3-gen-2)
 
 </details>
 
@@ -122,7 +122,7 @@ My mouse is a [Steelseries Rival 3 Gen 2](https://steelseries.com/en-au/gaming-m
 | __Microphone__ | Shure MV7+                   |
 | __Camera__     | Elgato Facecam 4K            |
 
-{{ image(url="/img/desktop-pc.png", alt="my pc", no_hover=true) }}
+![my pc](/img/desktop-pc.png)
 
 </details>
 
@@ -131,7 +131,7 @@ My mouse is a [Steelseries Rival 3 Gen 2](https://steelseries.com/en-au/gaming-m
 
 [Pop! OS](https://system76.com/pop) 24.04 with COSMIC desktop.
 
-{{ youtube(id="IyXzjnd6q3g") }}
+<iframe class="video" src="https://www.youtube-nocookie.com/embed/IyXzjnd6q3g" title="YouTube video" loading="lazy" allowfullscreen></iframe>
 
 </details>
 
@@ -169,7 +169,7 @@ What I would consider my essential plugins are:
 
 [sainnhe/edge](https://github.com/sainnhe/edge)
 
-[{{ image(url="/img/neovim-theme.png", alt="neovim", no_hover=true) }}](https://github.com/sainnhe/edge)
+[![neovim](/img/neovim-theme.png)](https://github.com/sainnhe/edge)
 
 </details>
 

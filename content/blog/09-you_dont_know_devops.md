@@ -4,14 +4,11 @@ description = "An exploration of the history of DevOps, how a cultural movement 
 date = 2026-07-30
 slug = "you_dont_know_devops"
 aliases = ["blog/2026-07-27-you_dont_know_devops"]
-template = "article.html"
 render = true
 
 [taxonomies]
 tags = ["devops"]
 
-[extra]
-go_to_top = true
 +++
 
 ### What does empathy have to do with DevOps?
@@ -45,7 +42,7 @@ itself was meant to represent breaking down the silo between Dev and Ops, back
 at a time where developers were prioritizing delivering software faster, while
 operations were trying to keep everything stable. Two goals that conflicted.
 
-{{ image(url="/img/wallofconfusion.jpg", no_hover=true) }}
+![](/img/wallofconfusion.jpg)
 
 At DevOpsDays, Paul Hammond from Flickr gave a talk titled "10+ Deploys Per
 Day". This blew people's minds because at the time, enterprise software was
@@ -77,7 +74,7 @@ functions, and continuous feedback loops, they got Jenkins, Puppet, Docker,
 Terraform, and YAML templates. Basically the McDonalds of DevOps.
 
 ## Painting the Silo a Different Color
-{{ image(url="/img/newpaint.jpg", no_hover=true) }}
+![](/img/newpaint.jpg)
 
 Companies thought they could just "buy" DevOps, so rather than training
 developers to understand more about infrastructure, or teaching operations to
@@ -91,7 +88,7 @@ work on the same problems with shinier tools.
 Just when everyone was bought into DevOps in 2016, "Site Reliability
 Engineering: How Google Runs Production Systems" was released.
 
-{{ image(url="/img/sre.png", alt="book cover of the SRE book", no_hover=true) }}
+![book cover of the SRE book](/img/sre.png)
 
 Google defined SRE as "what you get when you treat operations as if it's a
 software problem." That line inspired me personally to start seeing the world
@@ -136,7 +133,7 @@ with his famous phrase: *"You build it, you run it."* Basically developers were
 put on the hook for when their service blows up in production, creating a
 natural incentive for them to write more reliable code.
 
-{{ image(url="/img/ybyr.png", no_hover=true) }}
+![](/img/ybyr.png)
 
 But as the story goes, we shifted left a bit too far. 
 

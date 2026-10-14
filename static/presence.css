@@ -1,21 +1,39 @@
 #presence-cursor-layer {
   position: absolute;
-  top: 0;
-  left: 0;
+  inset: 0 auto auto 0;
   z-index: 9999;
   pointer-events: none;
 }
 
 .presence-cursor {
   position: absolute;
-  width: 0.875rem;
-  height: 0.875rem;
-  border: 2px solid white;
-  border-radius: 50%;
-  background: var(--accent-color, #7c3aed);
-  box-shadow: 0 2px 8px rgb(15 23 42 / 35%);
+  width: 16px;
+  height: 18px;
   transform: translate(-50%, -50%);
   transition: left 50ms linear, top 50ms linear;
+  image-rendering: pixelated;
+}
+
+/* Blocky silhouette, inset phosphor fill, and two square eyes. */
+.presence-cursor::before,
+.presence-cursor::after {
+  content: "";
+  position: absolute;
+  clip-path: polygon(25% 0, 75% 0, 75% 22%, 100% 22%, 100% 78%, 75% 78%, 75% 100%, 50% 83%, 25% 100%, 25% 78%, 0 78%, 0 22%, 25% 22%);
+  image-rendering: pixelated;
+}
+
+.presence-cursor::before {
+  inset: 0;
+  background: var(--ink, #30322c);
+}
+
+.presence-cursor::after {
+  inset: 2px;
+  background:
+    linear-gradient(var(--ink, #30322c) 0 0) 3px 5px / 2px 3px no-repeat,
+    linear-gradient(var(--ink, #30322c) 0 0) 7px 5px / 2px 3px no-repeat,
+    var(--lime, #c4df67);
 }
 
 @media (prefers-reduced-motion: reduce) {

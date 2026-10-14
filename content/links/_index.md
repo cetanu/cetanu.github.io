@@ -16,13 +16,13 @@ main#main-content > h1:first-of-type {
     border-radius: 50%;
     object-fit: cover;
     margin-bottom: 1rem;
-    box-shadow: var(--shadow);
+    box-shadow: 0 2px 8px #0003;
 }
 .linkspage-title {
     margin: 0;
 }
 .linkspage-subtitle {
-    color: var(--fg-muted-4);
+    color: var(--muted);
     margin-top: 0.5rem;
 }
 .linkspage-container {
@@ -37,35 +37,35 @@ main#main-content > h1:first-of-type {
     align-items: center;
     justify-content: center;
     text-decoration: none !important;
-    background-color: var(--fg-muted-1);
-    border: 1px solid var(--fg-muted-2);
-    border-radius: var(--rounded-corner);
+    background-color: var(--case);
+    border: 1px solid var(--edge);
+    border-radius: 0.75rem;
     padding: 1rem;
-    color: var(--fg-color) !important;
+    color: var(--ink) !important;
     font-weight: 600;
-    box-shadow: var(--edge-highlight), var(--shadow);
-    transition: transform var(--transition-longer), box-shadow var(--transition-longer), border-color var(--transition-longer);
+    box-shadow: inset 0 1px #ffffff12, 0 2px 8px #0003;
+    transition: transform 250ms ease, box-shadow 250ms ease, border-color 250ms ease;
 }
 .linkspage-btn:hover {
     transform: translateY(-4px);
-    box-shadow: 0 0 0 1px var(--accent-color), var(--shadow-raised);
-    border-color: var(--accent-color);
+    box-shadow: 0 0 0 1px var(--orange), 0 4px 12px #0005;
+    border-color: var(--orange);
 }
 .linkspage-icon {
     width: 1.25rem;
     height: 1.25rem;
     margin-right: 0.75rem;
-    background-color: var(--fg-color);
+    background-color: var(--ink);
     mask-size: contain;
     mask-repeat: no-repeat;
     mask-position: center;
     -webkit-mask-size: contain;
     -webkit-mask-repeat: no-repeat;
     -webkit-mask-position: center;
-    transition: background-color var(--transition-longer);
+    transition: background-color 250ms ease;
 }
 .linkspage-btn:hover .linkspage-icon {
-    background-color: var(--accent-color);
+    background-color: var(--orange);
 }
 </style>
 

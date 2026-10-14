@@ -4,13 +4,10 @@ description = "An overview of the Linux scheduler's limitations and why realtime
 date = 2026-04-20
 slug = "linux_is_not_a_realtime_system"
 aliases = ["blog/2026-04-20-linux_is_not_a_realtime_system"]
-template = "article.html"
 
 [taxonomies]
 tags = ["hft", "performance", "low-latency"]
 
-[extra]
-go_to_top = true
 +++
 
 **Linux is not a realtime operating system.**
@@ -81,8 +78,7 @@ executing a particular system call, such as `read()` or `sleep()`.
 However, the *scheduler* can also pause a task *without any cooperation from the
 task.*
 
-{{ image(url="/img/preemption_meme_1.png", alt="Scheduler standing behind the
-application, about to ruin its day", no_hover=true) }}
+![Scheduler standing behind the application, about to ruin its day](/img/preemption_meme_1.png)
 
 ## Preemption
 
@@ -133,12 +129,12 @@ You can examine the interrupts on an existing machine by inspecting
 
 By default, all cores can service interrupts.
 
-{% alert(tip=true) %}
-Non-essential hardware interrupts can be moved to another core or cores with
-interrupt affinity (`/proc/irq/<IRQ_NUMBER>/smp_affinity`). See [Interrupts and IRQ
-Tuning](https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/6/html/performance_tuning_guide/s-cpu-irq)
-in the Red Hat tuning guide
-{% end %}
+> **Tip:**
+> Non-essential hardware interrupts can be moved to another core or cores with
+> interrupt affinity (`/proc/irq/<IRQ_NUMBER>/smp_affinity`). See [Interrupts and IRQ
+> Tuning](https://docs.redhat.com/en/documentation/red_hat_enterprise_linux/6/html/performance_tuning_guide/s-cpu-irq)
+> in the Red Hat tuning guide
+
 
 ### Non-maskable interrupts (NMI)
 
@@ -153,14 +149,14 @@ This can be and usually is disabled in HFT environments as far as I'm aware.
 This supposedly the most frequent cause of this type of interrupt. The other
 NMIs cannot be disabled and usually result in a kernel panic or system restart.
 
-{% alert(tip=true) %}
-You can disable the watchdog while the system is running by setting the sysctl
-`kernel.nmi_watchdog` to `0`, or you can edit your bootloader such as GRUB with
-`nmi_watchdog=0` at the end of the line that starts with
-`GRUB_CMDLINE_LINUX_DEFAULT`
+> **Tip:**
+> You can disable the watchdog while the system is running by setting the sysctl
+> `kernel.nmi_watchdog` to `0`, or you can edit your bootloader such as GRUB with
+> `nmi_watchdog=0` at the end of the line that starts with
+> `GRUB_CMDLINE_LINUX_DEFAULT`
+>
+> Occasionally it can show up in BIOS as "IPMI Watchdog Timer" which can be disabled.
 
-Occasionally it can show up in BIOS as "IPMI Watchdog Timer" which can be disabled.
-{% end %}
 
 ### System Management Interrupts (SMI)
 
@@ -172,29 +168,29 @@ These interrupts occur when the motherboard needs to perform some kind of
 thermal throttling or power management, and can take in excess of 100
 microseconds to complete.
 
-{% alert(tip=true) %}
-There is nothing you can configure in the OS to prevent this, but there may be
-BIOS options like disabling "Global SMI" or "C-States", and these options may
-only be present in server hardware that has been specifically optimized for HFT
-by the vendor.
-{% end %}
+> **Tip:**
+> There is nothing you can configure in the OS to prevent this, but there may be
+> BIOS options like disabling "Global SMI" or "C-States", and these options may
+> only be present in server hardware that has been specifically optimized for HFT
+> by the vendor.
+
 
 ### Software faults
 
 If the trading app tries to access memory and encounters a page fault or a TLB
 miss, the kernel needs to take over and fetch the page.
 
-{% alert(tip=true) %}
-Use huge-pages and pre-fault all pages. I'll cover this more in a future
-article about the TLB specifically.
-{% end %}
+> **Tip:**
+> Use huge-pages and pre-fault all pages. I'll cover this more in a future
+> article about the TLB specifically.
+
 
 ## Validation
 
 There are some tools out there which can be used to run tasks and measure interference, such as:
 
 * `cyclictest` can be used to measure kernel scheduling latency
-* `hwlatdetect` can be used to measure latency caused by NMIs 
+* `hwlatdetect` can be used to measure latency caused by NMIs
 
 ## Conclusion
 

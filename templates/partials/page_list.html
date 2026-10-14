@@ -1,0 +1,5 @@
+<ul class="page-list">
+{% for entry in entries %}
+<li>{% if entry.date %}<time datetime="{{ entry.date }}">{{ entry.date | date(format="%Y-%m-%d") }}</time> {% endif %}<a href="{{ entry.permalink | replace(from=config.base_url, to="") }}">{{ entry.title }}</a>{% if entry.description %}<p>{{ entry.description }}</p>{% endif %}</li>
+{% endfor %}
+</ul>

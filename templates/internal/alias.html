@@ -1,0 +1,12 @@
+{% set target = url | regex_replace(pattern="^https?://[^/]+", rep="") %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Opening page</title>
+<link rel="canonical" href="{{ url }}">
+<script>location.replace({{ target | json_encode | safe }} + location.hash);</script>
+<noscript><meta http-equiv="refresh" content="0;url={{ target }}"></noscript>
+</head>
+<body><a href="{{ target }}">Continue to page</a></body>
+</html>

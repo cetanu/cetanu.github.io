@@ -4,14 +4,11 @@ description = "How High-Frequency Trading uses kernel bypass to sidestep the Lin
 date = 2026-07-07
 slug = "kernel_bypass"
 aliases = ["blog/draft-kernel_bypass"]
-template = "article.html"
 render = false
 
 [taxonomies]
 tags = ["hft", "performance", "low-latency", "networking"]
 
-[extra]
-go_to_top = true
 +++
 
 In a previous post, we established that Linux is not a real-time operating

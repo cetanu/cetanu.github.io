@@ -4,14 +4,11 @@ description = "A little history behind why the internet adopted TLS for all web 
 date = 2026-07-22
 slug = "do_we_really_need_tls_for_cat_pictures"
 aliases = ["blog/2026-07-18-do_we_really_need_tls_for_cat_pictures"]
-template = "article.html"
 render = true
 
 [taxonomies]
 tags = ["security", "networking", "privacy"]
 
-[extra]
-go_to_top = true
 +++
 
 It's a Sunday afternoon, you're at a cafe, you connect to the free wifi and
@@ -19,7 +16,7 @@ browse the internet for funny cat pictures.
 
 The silly cat picture makes you smile.
 
-{{ image(url="/img/cat-minecraft.jpg", alt="cat in minecraft", no_hover=true) }}
+![cat in minecraft](/img/cat-minecraft.jpg)
 
 ---
 

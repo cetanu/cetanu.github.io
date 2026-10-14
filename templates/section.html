@@ -1,0 +1,6 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>{{ section.title }}</h1>
+{{ section.content | replace(from='href="' ~ config.base_url, to='href="') | safe }}
+{% if section.pages %}{% set entries = section.pages %}{% include "partials/page_list.html" %}{% endif %}
+{% endblock content %}

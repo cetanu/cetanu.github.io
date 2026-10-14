@@ -4,13 +4,10 @@ description = "Understanding virtual memory, the TLB (Translation Lookaside Buff
 date = 2026-04-28
 slug = "translation_lookaside_buffer"
 aliases = ["blog/2026-04-28-translation_lookaside_buffer"]
-template = "article.html"
 
 [taxonomies]
 tags = ["hft", "performance", "low-latency"]
 
-[extra]
-go_to_top = true
 +++
 
 ## The Illusion of Memory

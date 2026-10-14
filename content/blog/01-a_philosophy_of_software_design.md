@@ -4,13 +4,10 @@ description = "A review of 'A Philosophy of Software Design' by John Ousterhout 
 date = 2026-03-25
 slug = "a_philosophy_of_software_design"
 aliases = ["blog/2026-03-25-a_philosophy_of_software_design"]
-template = "article.html"
 
 [taxonomies]
 tags = ["software", "architecture", "design"]
 
-[extra]
-go_to_top = true
 +++
 
 Today I finished reading the book, "A Philosophy of Software Design", by John

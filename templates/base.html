@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+{% include "partials/head.html" %}
+<body id="top">
+<a class="skip-link" href="#main-content">Skip to content</a>
+<div class="machine">
+<header class="machine-header">
+    <div class="identity"><a class="wordmark" href="/">{{ config.title }}</a></div>
+    <div class="manufacturer-plate" aria-hidden="true">VS / 01<span>GENERAL PURPOSE<br>INFORMATION SYSTEM</span></div>
+    <div class="power-label"><span class="led" aria-hidden="true"></span> ONLINE</div>
+</header>
+<div class="instrument-strip" aria-hidden="true"><span><i></i> OPERATOR CONSOLE</span><span class="vents"></span><span>240V ~ 50Hz / SYDNEY</span></div>
+<section class="system-monitor" aria-label="System monitor">
+    <div class="monitor-plate"><span class="led" aria-hidden="true"></span><span class="panel-caption">SYSTEM MONITOR</span><strong>VS / 01</strong></div>
+    <div class="monitor-screen"><div id="crt-terminal" role="log" aria-label="Simulated network traffic" aria-live="off"><div class="terminal-placeholder">Starting proxy monitor…</div></div></div>
+</section>
+<div class="console-layout">
+<aside class="instrument-rail" aria-label="Console controls">
+    <section class="instrument-module position-module" aria-label="Reading progress">
+        <label class="panel-caption" for="reading-progress">01 / DOCUMENT POSITION</label>
+        <div class="meter"><div class="meter-scale" aria-hidden="true"><span>0</span><span>50</span><span>100</span></div><progress id="reading-progress" max="100" value="0">0%</progress></div>
+    </section>
+    <div class="panel-caption">02 / SELECT CHANNEL</div>
+    <nav aria-label="Main navigation">
+        <a href="/"{% if current_url is defined and current_url == get_url(path='/') %} aria-current="page"{% endif %}><span class="key-number" aria-hidden="true">00</span>Home<span class="channel-light" aria-hidden="true"></span></a>
+        {% for link in config.extra.nav.links %}
+        {% set link_url = get_url(path=link.url) %}
+        <a href="{{ link_url | replace(from=config.base_url, to="") }}"{% if current_url is defined and current_url is starting_with(link_url) %} aria-current="page"{% endif %}><span class="key-number" aria-hidden="true">0{{ loop.index }}</span>{{ link.name }}<span class="channel-light" aria-hidden="true"></span></a>
+        {% endfor %}
+    </nav>
+    <section class="instrument-module clock-module" aria-label="Sydney time">
+        <div class="panel-caption">03 / LOCAL TIME</div>
+        <div class="clock-display"><span class="clock-city">SYDNEY / AU</span><time id="console-clock">--:--:--</time></div>
+    </section>
+    <div class="instrument-module screen-controls">
+        <label class="panel-caption" for="screen-texture">04 / DISPLAY</label>
+        <label class="toggle-control"><input id="screen-texture" type="checkbox" checked><span class="toggle-switch" aria-hidden="true"></span>CRT texture</label>
+    </div>
+    <div class="speaker-grille" aria-hidden="true"></div>
+    <div class="serial-plate" aria-hidden="true"><div class="barcode"></div>VS-01 / SYD / PERSONAL<br>NO USER SERVICEABLE PARTS</div>
+</aside>
+<div class="document-bay">
+    <div class="document-label"><span><span class="led led-orange" aria-hidden="true"></span> READER</span><span>TEXT / IMG</span></div>
+    <main id="main-content" tabindex="-1">{% block content %}{% endblock content %}</main>
+    <div class="bay-bottom" aria-hidden="true"><span>◀ FEED DIRECTION</span><span class="paper-slot"></span><span>VS–01</span></div>
+</div>
+</div>
+<footer class="machine-footer"><span>© {{ now() | date(format="%Y") }} {{ config.author }}</span><a href="{{ get_url(path='atom.xml') | replace(from=config.base_url, to="") }}"><span class="led led-orange" aria-hidden="true"></span> Feed / Atom</a><a href="#top">↑ Return to top</a></footer>
+</div>
+<script defer src="/terminal.js"></script>
+<script defer src="/console.js"></script>
+</body>
+</html>

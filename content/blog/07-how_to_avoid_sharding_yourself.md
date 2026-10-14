@@ -4,13 +4,10 @@ description = "A deep dive into database sharding, tenant routing strategies, an
 date = 2026-07-11
 slug = "how_to_avoid_sharding_yourself"
 aliases = ["blog/2026-07-11-how_to_avoid_sharding_yourself"]
-template = "article.html"
 
 [taxonomies]
 tags = ["system design", "multitenant", "sharding"]
 
-[extra]
-go_to_top = true
 +++
 
 I watched a video named [The Problem Sharding a Database
@@ -23,7 +20,7 @@ It's about splitting up your database and the advantage of doing so, but it
 introduces a small problem and that is the question of how to ensure that each
 user accesses the correct database shard.
 
-{{ image(url="/img/cody.png", alt="screenshot of cody's video", no_hover=true) }}
+![screenshot of cody's video](/img/cody.png)
 
 <small>
 Also, the diagramming tool he's using is cool and if anyone knows what it is -
@@ -99,7 +96,7 @@ still unsolved.
 
 
 ## Use a Lookup Table for Tenant Routing
-{{ image(url="/img/lookup-table.png", alt="diagram of architecture that uses a lookup table", no_hover=true) }}
+![diagram of architecture that uses a lookup table](/img/lookup-table.png)
 
 I know it's appealing to avoid adding infrastructure to solve a problem, but I
 think this situation justifies the addition of a database to act as a lookup
@@ -165,7 +162,7 @@ Put even more simply:
 2. The central lookup table publishes an event to a broker
 3. The nodes pick up the event (the Query)
 
-{{ image(url="/img/cqrs-example.png", alt="diagram of an architecture that demonstrates cqrs", no_hover=true) }}
+![diagram of an architecture that demonstrates cqrs](/img/cqrs-example.png)
 
 An example of a broker could be an SNS topic, or a version number on an API, or
 whatever else you want to use, as long as it's cheap for nodes to access and

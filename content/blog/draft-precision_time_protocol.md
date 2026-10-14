@@ -4,14 +4,11 @@ description = "Why NTP isn't accurate enough for trading, and how PTP (Precision
 date = 2026-07-07
 slug = "precision_time_protocol"
 aliases = ["blog/draft-precision_time_protocol"]
-template = "article.html"
 render = false
 
 [taxonomies]
 tags = ["hft", "sre", "infrastructure"]
 
-[extra]
-go_to_top = true
 +++
 
 In trading, knowing exactly *when* an event occurred is just as critical as

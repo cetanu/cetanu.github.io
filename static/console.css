@@ -1,0 +1,102 @@
+/* Physical enclosure and instrument modules. */
+.manufacturer-plate { display: flex; align-items: center; gap: 0.8rem; border: 1px solid #817c69; padding: 0.5rem 0.7rem; font: 700 1.6rem/1 var(--mono); letter-spacing: -0.08em; box-shadow: inset 0 0 0 2px var(--case), inset 0 0 0 3px #817c6950; }
+.manufacturer-plate span { font: 0.5rem/1.5 var(--mono); letter-spacing: 0.04em; }
+.console-layout { display: grid; grid-template-columns: 13rem minmax(0, 1fr); gap: 1.3rem; padding: 1.5rem; align-items: start; }
+.instrument-rail { position: sticky; top: 1rem; max-height: max(14rem, calc(100dvh - 10rem)); overflow-y: auto; scrollbar-width: thin; scrollbar-color: #9b927b transparent; padding: 1.2rem; border: 1px solid #aca18a; border-radius: 3px; box-shadow: inset 0 1px #fff8, 0 2px 2px #0001; background: #cfc4ac; }
+.panel-caption, .document-label, .bay-bottom, .serial-plate { font: 0.58rem/1.5 var(--mono); letter-spacing: 0.06em; text-transform: uppercase; }
+.panel-caption { display: block; color: #575747; }
+.channel-light { margin-left: auto; width: 5px; height: 13px; border-radius: 1px; background: #a69e87; box-shadow: inset 0 1px 2px #0005; }
+[aria-current="page"] .channel-light { background: var(--lime); box-shadow: 0 0 7px #c4df6760; }
+.instrument-module { margin-top: 1.6rem; border-top: 1px solid #a69c84; padding-top: 1rem; box-shadow: inset 0 1px #fff4; }
+.clock-display { margin-top: 0.6rem; background: #2a3027; padding: 0.75rem; border-radius: 4px; border: 3px solid #99927c; box-shadow: inset 0 2px 8px #0008, 0 1px #fff7; color: var(--lime); }
+.clock-city { display: block; font: 0.5rem var(--mono); letter-spacing: 0.12em; opacity: 0.7; margin-bottom: 0.35rem; }
+#console-clock { font: 1.35rem/1.2 var(--mono); letter-spacing: 0.025em; color: var(--lime); text-shadow: 0 0 8px #c4df6750; }
+.meter { margin-top: 0.6rem; padding: 0.5rem 0.6rem; border: 1px solid #a69c84; background: #ece2c9; box-shadow: inset 0 1px 4px #0002; }
+.meter-scale { display: flex; justify-content: space-between; font: 0.5rem var(--mono); padding-bottom: 0.5rem; background: repeating-linear-gradient(90deg, #827c65 0 1px, transparent 1px 10%); background-size: 100% 4px; background-position: bottom; background-repeat: no-repeat; }
+progress { display: block; appearance: none; width: 100%; height: 6px; margin-top: 0.4rem; border: 0; background: #c1b79e; color: var(--orange); }
+progress::-webkit-progress-bar { background: #c1b79e; }
+progress::-webkit-progress-value { background: var(--orange); }
+progress::-moz-progress-bar { background: var(--orange); }
+.toggle-control { position: relative; display: flex; align-items: center; gap: 0.6rem; margin-top: 0.75rem; cursor: pointer; font: 0.65rem var(--mono); }
+.toggle-control input { position: absolute; width: 2.5rem; height: 1.4rem; margin: 0; opacity: 0; }
+.toggle-switch { pointer-events: none; width: 2.5rem; height: 1.4rem; border-radius: 3px; background: #373b31; box-shadow: inset 0 2px 4px #0008; padding: 3px; }
+.toggle-switch::after { content: ""; display: block; height: 100%; width: 50%; background: linear-gradient(#eee4cd, #b9ad90); border-radius: 1px; box-shadow: 0 1px 2px #0008; }
+input:checked + .toggle-switch::after { transform: translateX(100%); background: linear-gradient(#dbebaa, #9eaf6b); }
+input:focus-visible + .toggle-switch { outline: 3px solid var(--orange); outline-offset: 4px; }
+.speaker-grille { height: 4rem; margin-top: 1.8rem; border-radius: 4px; background: radial-gradient(ellipse, #4a4b3e 0 1px, #cfc4ac 1.5px); background-size: 5px 5px; mask-image: linear-gradient(90deg, transparent, black 15% 85%, transparent); }
+.serial-plate { margin-top: 1rem; color: #625e4c; font-size: 0.45rem; line-height: 1.7; }
+.barcode { height: 17px; width: 90px; margin-bottom: 0.3rem; background: repeating-linear-gradient(90deg, #5c5d4f 0 1px, transparent 1px 3px, #5c5d4f 3px 5px, transparent 5px 6px, #5c5d4f 6px 7px, transparent 7px 11px); }
+.document-bay { min-width: 0; padding: 0.8rem; border: 1px solid #a2957b; border-radius: 5px; background: #bcb198; box-shadow: inset 0 2px 5px #0003, 0 1px #fff8; }
+.document-label { display: flex; justify-content: space-between; gap: 1rem; padding: 0.2rem 0.3rem 0.9rem; color: #47483c; }
+.document-label .led { width: 6px; height: 6px; margin-right: 0.4rem; }
+.bay-bottom { display: flex; align-items: center; gap: 1rem; padding: 0.9rem 0.3rem 0.15rem; color: #555442; font-size: 0.5rem; }
+.paper-slot { height: 5px; flex: 1; background: #4b4d40; border-bottom: 1px solid #e5d9bf; border-radius: 3px; box-shadow: inset 0 2px 2px #0009; }
+/* The display is part of the chassis, shared by every document. */
+.system-monitor { display: grid; grid-template-columns: 13rem minmax(0, 1fr); gap: 1.3rem; padding: 1.2rem 1.5rem; border-bottom: 1px solid #a99e87; background: #c9bea5; box-shadow: inset 0 1px #fff6, inset 0 -1px #fff3; }
+.monitor-plate { display: flex; flex-direction: column; justify-content: center; gap: 0.45rem; padding-left: 1.2rem; }
+.monitor-plate strong { font: 700 1.65rem/1.1 var(--mono); letter-spacing: -0.07em; color: #5d5b4c; }
+.monitor-status { display: flex; align-items: center; gap: 0.4rem; font: 0.5rem var(--mono); color: #575747; }
+.monitor-status .led { width: 5px; height: 5px; }
+.monitor-screen { position: relative; min-width: 0; padding: 0.8rem 1.1rem; border: 5px solid #575b4b; border-radius: 8px; background: radial-gradient(ellipse at center, #303b2b, #1c241c); box-shadow: 0 1px #eee2c4, 0 -1px #8d846d, inset 0 0 20px #000a; }
+.monitor-screen::after { content: ""; position: absolute; inset: 0; background: repeating-linear-gradient(0deg, transparent 0 2px, #0002 2px 3px); border-radius: 3px; pointer-events: none; }
+#crt-terminal { height: 6.2rem; overflow-y: auto; scrollbar-width: thin; scrollbar-color: #536246 #20271e; color: var(--lime); text-shadow: 0 0 5px #c4df6726; font: 0.78rem/1.55 var(--mono); }
+.terminal-line { display: grid; grid-template-columns: 4.4rem minmax(0, 1fr); gap: 0.6rem; }
+.terminal-time { color: #8f9c7c; }
+.terminal-message { overflow-wrap: anywhere; }
+.clean-display .monitor-screen::after { display: none; }
+.clean-display main { background-image: none; }
+.clean-display #crt-terminal { text-shadow: none; }
+.position-module { position: sticky; top: -1.2rem; z-index: 1; background: #cfc4ac; margin: -1.2rem -1.2rem 1.1rem; padding: 1.2rem; border-top: 0; border-bottom: 1px solid #a69c84; box-shadow: 0 1px #fff4; }
+@media (min-width: 621px) and (max-height: 850px) {
+    .instrument-rail { padding: 0.9rem; }
+    .position-module { top: -0.9rem; margin: -0.9rem -0.9rem 0.8rem; padding: 0.9rem; }
+    .instrument-rail nav { gap: 0.5rem; margin-top: 0.65rem; }
+    .instrument-rail nav a { padding-block: 0.6rem; }
+    .instrument-module:not(.position-module) { margin-top: 1rem; padding-top: 0.75rem; }
+    .speaker-grille, .serial-plate { display: none; }
+}
+.machine-footer { border-top: 1px solid #b3a68c; padding-top: 1rem; }
+@media (max-width: 900px) {
+    body { padding: 1rem; }
+    .machine-header { padding: 2rem; }
+    .manufacturer-plate { display: none; }
+    .console-layout { grid-template-columns: 10rem minmax(0, 1fr); gap: 0.8rem; padding: 0.8rem; }
+    .instrument-rail { padding: 0.8rem; }
+    .position-module { top: -0.8rem; margin: -0.8rem -0.8rem 0.8rem; padding: 0.8rem; }
+    .system-monitor { grid-template-columns: 10rem minmax(0, 1fr); gap: 0.8rem; padding: 0.8rem; }
+    .monitor-plate { padding-left: 0.8rem; }
+    #console-clock { font-size: 1.1rem; }
+    main { padding: 1.5rem; }
+    .panel-caption { font-size: 0.5rem; }
+}
+@media (max-width: 620px) {
+    body { padding: 0.5rem; }
+    .machine-header { padding: 1.6rem 1.2rem; gap: 0.8rem; }
+    .wordmark { font-size: 1.5rem; }
+    .model-label { font-size: 0.5rem; letter-spacing: 0; }
+    .power-label { font-size: 0.5rem; gap: 0.3rem; }
+    .instrument-strip { padding-inline: 1rem; font-size: 0.5rem; }
+    .instrument-strip > span:last-child { display: none; }
+    .console-layout { display: flex; flex-direction: column; }
+    .instrument-rail { position: static; width: 100%; max-height: none; overflow: visible; }
+    .instrument-rail > .panel-caption { font-size: 0.55rem; }
+    nav { flex-direction: row; flex-wrap: wrap; gap: 0.6rem; margin-top: 0.6rem; }
+    nav a { flex: 1 1 28%; padding: 0.6rem 0.4rem; gap: 0.5rem; font-size: 0.7rem; }
+    .instrument-module { margin-top: 1rem; }
+    .clock-module, .speaker-grille, .serial-plate, .position-module { display: none; }
+    .screen-controls { display: flex; align-items: center; justify-content: space-between; padding-top: 0.7rem; }
+    .toggle-control { margin-top: 0; }
+    .system-monitor { grid-template-columns: 1fr; gap: 0.5rem; padding: 0.8rem; }
+    .monitor-plate { flex-direction: row; align-items: center; justify-content: space-between; padding: 0; }
+    .monitor-plate strong { display: none; }
+    .monitor-screen { padding: 0.7rem; }
+    #crt-terminal { font-size: 0.7rem; height: 5rem; }
+    .terminal-line { grid-template-columns: minmax(0, 1fr); gap: 0.4rem; }
+    .terminal-time { display: none; }
+    .document-bay { width: 100%; padding: 0.5rem; }
+    .document-label { font-size: 0.5rem; }
+    main { padding: 1.1rem; }
+    .machine-footer { font-size: 0.5rem; padding-inline: 1.2rem; }
+    .machine-footer a:first-of-type { margin-left: 0; }
+    .pgp-tabs, .pgp-button-row { flex-wrap: wrap; }
+}

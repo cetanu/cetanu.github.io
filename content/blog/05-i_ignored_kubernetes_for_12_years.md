@@ -4,13 +4,10 @@ description = "My journey from viewing Kubernetes as overcomplicated hype to und
 date = 2026-06-30
 slug = "i_ignored_kubernetes_for_12_years"
 aliases = ["blog/2026-06-30-i_ignored_kubernetes_for_12_years"]
-template = "article.html"
 
 [taxonomies]
 tags = ["software", "infrastructure", "architecture", "devops", "kubernetes"]
 
-[extra]
-go_to_top = true
 +++
 
 # My introduction to Kubernetes
@@ -128,11 +125,11 @@ thiscan become quite subjective, and so for this article I won't go into that
 atall, but the options that I was aware of were tools like KubeVela,
 Crossplane,and Backstage.
 
-{% alert(warning=true) %}
-Still writing this up
-{% end %}
+> **Warning:**
+> Still writing this up
 
-{{ youtube(id="V8iT_2YHtns") }}
+
+<iframe class="video" src="https://www.youtube-nocookie.com/embed/V8iT_2YHtns" title="YouTube video" loading="lazy" allowfullscreen></iframe>
 
 <!--
 

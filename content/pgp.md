@@ -14,17 +14,17 @@ description = "A client-side utility to encrypt messages for Vasilios Syrakis us
 }
 
 .pgp-card {
-  background-color: var(--fg-muted-1);
-  border: 1px solid var(--fg-muted-2);
-  border-radius: var(--rounded-corner);
-  box-shadow: var(--edge-highlight), var(--shadow);
+  background-color: var(--case);
+  border: 1px solid var(--edge);
+  border-radius: 0.75rem;
+  box-shadow: inset 0 1px #ffffff12, 0 2px 8px #0003;
   padding: 1.5rem;
 }
 
 .pgp-tabs {
   display: flex;
   gap: 0.5rem;
-  border-bottom: 2px solid var(--fg-muted-2);
+  border-bottom: 2px solid var(--edge);
   margin-bottom: 1.5rem;
   padding-bottom: 0.5rem;
   display: flex;
@@ -33,24 +33,24 @@ description = "A client-side utility to encrypt messages for Vasilios Syrakis us
 .pgp-tab-btn {
   background: transparent;
   border: none;
-  color: var(--fg-muted-4);
+  color: var(--muted);
   font-family: inherit;
   font-size: 1rem;
   font-weight: 600;
   cursor: pointer;
   padding: 0.5rem 1rem;
-  border-radius: var(--rounded-corner-small);
-  transition: all var(--transition);
+  border-radius: 0.25rem;
+  transition: all 150ms ease;
 }
 
 .pgp-tab-btn:hover {
-  color: var(--fg-color);
-  background-color: var(--fg-muted-1);
+  color: var(--ink);
+  background-color: var(--case);
 }
 
 .pgp-tab-btn.active {
-  color: var(--accent-color);
-  background-color: var(--fg-muted-2);
+  color: var(--orange);
+  background-color: var(--edge);
 }
 
 .pgp-panel {
@@ -72,26 +72,26 @@ description = "A client-side utility to encrypt messages for Vasilios Syrakis us
 .pgp-input-group label {
   font-weight: 600;
   font-size: 0.9rem;
-  color: var(--fg-color);
+  color: var(--ink);
 }
 
 .pgp-textarea {
   width: 100%;
   min-height: 160px;
-  background-color: var(--fg-muted-1);
-  border: 1px solid var(--fg-muted-2);
-  border-radius: var(--rounded-corner-small);
-  color: var(--fg-color);
-  font-family: var(--font-monospace, monospace);
+  background-color: var(--case);
+  border: 1px solid var(--edge);
+  border-radius: 0.25rem;
+  color: var(--ink);
+  font-family: monospace;
   font-size: 0.85rem;
   padding: 0.75rem;
   resize: vertical;
-  transition: border-color var(--transition);
+  transition: border-color 150ms ease;
 }
 
 .pgp-textarea:focus {
   outline: none;
-  border-color: var(--accent-color);
+  border-color: var(--orange);
 }
 
 .pgp-button-row {
@@ -102,15 +102,15 @@ description = "A client-side utility to encrypt messages for Vasilios Syrakis us
 }
 
 .pgp-btn {
-  background-color: var(--accent-color);
-  color: var(--contrast-color, #000);
+  background-color: var(--orange);
+  color: #111;
   border: none;
-  border-radius: var(--rounded-corner-small);
+  border-radius: 0.25rem;
   padding: 0.6rem 1.2rem;
   font-size: 0.95rem;
   font-weight: 600;
   cursor: pointer;
-  transition: opacity var(--transition), transform var(--transition);
+  transition: opacity 150ms ease, transform 150ms ease;
 }
 
 .pgp-btn:hover {
@@ -123,18 +123,18 @@ description = "A client-side utility to encrypt messages for Vasilios Syrakis us
 }
 
 .pgp-btn-secondary {
-  background-color: var(--fg-muted-2);
-  color: var(--fg-color);
+  background-color: var(--edge);
+  color: var(--ink);
 }
 
 .pgp-btn-secondary:hover {
-  background-color: var(--fg-muted-3);
+  background-color: var(--muted);
   opacity: 1;
 }
 
 .pgp-status {
   padding: 0.75rem;
-  border-radius: var(--rounded-corner-small);
+  border-radius: 0.25rem;
   font-size: 0.9rem;
   font-weight: 600;
   display: none;
@@ -156,20 +156,20 @@ description = "A client-side utility to encrypt messages for Vasilios Syrakis us
 
 .pgp-status.info {
   display: block;
-  background-color: var(--fg-muted-2);
-  border: 1px solid var(--fg-muted-3);
-  color: var(--fg-color);
+  background-color: var(--edge);
+  border: 1px solid var(--muted);
+  color: var(--ink);
 }
 
 .pgp-key-badge {
   font-size: 0.8rem;
-  font-family: var(--font-monospace, monospace);
-  background-color: var(--fg-muted-2);
-  border: 1px solid var(--fg-muted-3);
+  font-family: monospace;
+  background-color: var(--edge);
+  border: 1px solid var(--muted);
   padding: 0.25rem 0.5rem;
   border-radius: 4px;
   align-self: flex-start;
-  color: var(--fg-color);
+  color: var(--ink);
 }
 </style>
 
@@ -181,7 +181,7 @@ originated from me.
 <div class="pgp-container">
 <div class="pgp-card">
 <div id="key-badge" class="pgp-key-badge">Loading PGP public key...</div>
-<div id="key-fingerprint" style="font-size: 0.75rem; color: var(--fg-muted-4); font-family: var(--font-monospace, monospace); margin-top: 0.5rem;">Fetching public key metadata...</div>
+<div id="key-fingerprint" style="font-size: 0.75rem; color: #aaa; font-family: monospace; margin-top: 0.5rem;">Fetching public key metadata...</div>
 <div id="key-status" class="pgp-status info" style="margin-top: 0.75rem;">Initializing Cryptographic modules...</div>
 </div>
 <div class="pgp-card">

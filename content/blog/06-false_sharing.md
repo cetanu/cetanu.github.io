@@ -4,13 +4,10 @@ description = "An exploration of false sharing in CPU caches, how it silently de
 date = 2026-07-07
 slug = "false_sharing"
 aliases = ["blog/2026-07-07-false_sharing"]
-template = "article.html"
 
 [taxonomies]
 tags = ["hft", "performance", "hardware"]
 
-[extra]
-go_to_top = true
 +++
 
 In previous blogs I talked a little bit about
@@ -30,7 +27,7 @@ two caches, one being an instruction cache and the other being a data cache.
 Fun fact: these caches are usually made of SRAM and usually they are the
 largest part on the chip.
 
-{{ image(url="/img/relative-hw-speed.png", alt="relative speed of hardware", no_hover=true) }}
+![relative speed of hardware](/img/relative-hw-speed.png)
 
 ## Requesting data from the cache
 
@@ -71,7 +68,7 @@ that this can eat up dozens of precious nanoseconds, just for the comms between
 CPUs. As you increase the number of cores on a system this problem can be
 exacerbated.
 
-{{ image(url="/img/false-sharing.png", alt="diagram of false sharing", no_hover=true) }}
+![diagram of false sharing](/img/false-sharing.png)
 
 The second way is **True Sharing**, where cores may write to the same variable or
 data structure in memory. This could happen during atomic operations or when

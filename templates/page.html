@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block content %}
+<article>
+<header id="heading">
+<h1>{{ page.title }}</h1>
+{% if page.date %}<p><time datetime="{{ page.date }}">{{ page.date | date(format="%B %d, %Y") }}</time> · {{ page.reading_time }} minute read</p>{% endif %}
+{% if page.taxonomies.tags %}<p>{% for tag in page.taxonomies.tags %}<a href="{{ get_taxonomy_url(kind='tags', name=tag) | replace(from=config.base_url, to="") }}">{{ tag }}</a> {% endfor %}</p>{% endif %}
+</header>
+{% if page.date %}<div id="buttons-container"><button id="presentation-mode-toggle" type="button">Presentation mode</button></div>{% endif %}
+{{ page.content | replace(from='href="' ~ config.base_url, to='href="') | safe }}
+</article>
+{% endblock content %}
