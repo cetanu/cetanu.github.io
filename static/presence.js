@@ -12,12 +12,23 @@
 
   const remoteCursors = new Map()
 
+  function getVariant(viewerId) {
+    let hash = 0
+
+    for (const character of viewerId) {
+      hash = (hash * 31 + character.charCodeAt(0)) >>> 0
+    }
+
+    return hash % 4
+  }
+
   function getRemoteCursor(viewerId) {
     let cursor = remoteCursors.get(viewerId)
 
     if (!cursor) {
       cursor = document.createElement("div")
       cursor.className = "presence-cursor"
+      cursor.dataset.variant = getVariant(viewerId)
       cursorLayer.appendChild(cursor)
       remoteCursors.set(viewerId, cursor)
     }

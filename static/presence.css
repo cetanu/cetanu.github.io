@@ -8,14 +8,51 @@
 
 .presence-cursor {
   position: absolute;
-  width: 0.875rem;
-  height: 0.875rem;
-  border: 2px solid white;
-  border-radius: 50%;
-  background: var(--accent-color, #7c3aed);
-  box-shadow: 0 2px 8px rgb(15 23 42 / 35%);
+  width: 1.5rem;
+  height: 1.5rem;
   transform: translate(-50%, -50%);
   transition: left 50ms linear, top 50ms linear;
+}
+
+.presence-cursor::before {
+  position: absolute;
+  inset: 2px;
+  background: var(--ghost-color, #ff83b7);
+  clip-path: polygon(
+    25% 0, 75% 0, 75% 12.5%, 87.5% 12.5%, 87.5% 25%, 100% 25%,
+    100% 75%, 87.5% 75%, 87.5% 87.5%, 75% 87.5%, 75% 100%,
+    62.5% 87.5%, 50% 100%, 37.5% 87.5%, 25% 100%, 25% 87.5%,
+    12.5% 87.5%, 12.5% 75%, 0 75%, 0 25%, 12.5% 25%,
+    12.5% 12.5%, 25% 12.5%
+  );
+  content: "";
+  filter:
+    drop-shadow(0 2px 0 #30283d)
+    drop-shadow(2px 0 0 #30283d)
+    drop-shadow(-2px 0 0 #30283d);
+}
+
+.presence-cursor::after {
+  position: absolute;
+  top: 10px;
+  left: 8px;
+  width: 2px;
+  height: 3px;
+  background: #30283d;
+  box-shadow: 6px 0 #30283d;
+  content: "";
+}
+
+.presence-cursor[data-variant="1"] {
+  --ghost-color: #79d9cf;
+}
+
+.presence-cursor[data-variant="2"] {
+  --ghost-color: #a99aff;
+}
+
+.presence-cursor[data-variant="3"] {
+  --ghost-color: #ffd36e;
 }
 
 @media (prefers-reduced-motion: reduce) {
