@@ -1,5 +1,4 @@
 +++
-title = "PGP tools"
 description = "A client-side utility to encrypt messages for Vasilios Syrakis using his public PGP key, or verify digital signatures sent by him."
 +++
 
@@ -173,57 +172,103 @@ description = "A client-side utility to encrypt messages for Vasilios Syrakis us
 }
 </style>
 
+## Need to send me something confidential?
+
+You can use this utility to encrypt your message. Your input is not handled by
+any server and is processed purely in the browser.
+
+You can also ask me to send or resend a communication with a signature if you
+need to verify that something you've received is really from me and not some
+imposter.
+
 This utility runs entirely client-side in your browser using
 [OpenPGP.js](https://openpgpjs.org/). It allows you to encrypt messages using
 my public key before sending them, or verify that a signed message actually
 originated from me.
 
 <div class="pgp-container">
-<div class="pgp-card">
-<div id="key-badge" class="pgp-key-badge">Loading PGP public key...</div>
-<div id="key-fingerprint" style="font-size: 0.75rem; color: var(--fg-muted-4); font-family: var(--font-monospace, monospace); margin-top: 0.5rem;">Fetching public key metadata...</div>
-<div id="key-status" class="pgp-status info" style="margin-top: 0.75rem;">Initializing Cryptographic modules...</div>
-</div>
-<div class="pgp-card">
-<div class="pgp-tabs">
-<button class="pgp-tab-btn active" data-tab="encrypt-panel">Encrypt Message</button>
-<button class="pgp-tab-btn" data-tab="verify-panel">Verify Signature</button>
-</div>
-<div id="encrypt-panel" class="pgp-panel active">
-<div class="pgp-input-group">
-<label for="plaintext">Message to Encrypt</label>
-<textarea id="plaintext" class="pgp-textarea" placeholder="Type your secret message here..."></textarea>
-</div>
-<div class="pgp-button-row">
-<button id="encrypt-btn" class="pgp-btn">Encrypt</button>
-</div>
-<div id="encrypt-status" class="pgp-status"></div>
-<div class="pgp-input-group" style="margin-top: 0.5rem;">
-<label for="ciphertext">Encrypted Message</label>
-<textarea id="ciphertext" class="pgp-textarea" readonly placeholder="Encrypted output will appear here..."></textarea>
-</div>
-<div class="pgp-button-row">
-<button id="copy-cipher-btn" class="pgp-btn pgp-btn-secondary">Copy to Clipboard</button>
-</div>
-</div>
-<div id="verify-panel" class="pgp-panel">
-<div class="pgp-input-group">
-<label for="signed-message">Signed PGP Cleartext</label>
-<textarea id="signed-message" class="pgp-textarea" placeholder="Paste the signed message block (e.g. starting with -----BEGIN PGP SIGNED MESSAGE-----) here..."></textarea>
-</div>
-<div class="pgp-button-row">
-<button id="verify-btn" class="pgp-btn">Verify Signature</button>
-</div>
-<div id="verify-status" class="pgp-status"></div>
-<div class="pgp-input-group" style="margin-top: 0.5rem;">
-<label for="verified-text">Verified Message</label>
-<textarea id="verified-text" class="pgp-textarea" readonly placeholder="Verified text content will appear here..."></textarea>
-</div>
-<div class="pgp-button-row">
-<button id="copy-verified-btn" class="pgp-btn pgp-btn-secondary">Copy Content</button>
-</div>
-</div>
-</div>
+
+  <div class="pgp-card">
+    <div class="pgp-tabs">
+      <button class="pgp-tab-btn active" data-tab="encrypt-panel">
+        Encrypt Message
+      </button>
+      <button class="pgp-tab-btn" data-tab="verify-panel">
+        Verify Signature
+      </button>
+    </div>
+    <div id="encrypt-panel" class="pgp-panel active">
+      <div class="pgp-input-group">
+        <label for="plaintext">Message to Encrypt</label>
+        <textarea
+          id="plaintext"
+          class="pgp-textarea"
+          placeholder="Type your secret message here..."
+        ></textarea>
+      </div>
+      <div class="pgp-button-row">
+        <button id="encrypt-btn" class="pgp-btn">Encrypt</button>
+      </div>
+      <div id="encrypt-status" class="pgp-status"></div>
+      <div class="pgp-input-group" style="margin-top: 0.5rem;">
+        <label for="ciphertext">Encrypted Message</label>
+        <textarea
+          id="ciphertext"
+          class="pgp-textarea"
+          readonly
+          placeholder="Encrypted output will appear here..."
+        ></textarea>
+      </div>
+      <div class="pgp-button-row">
+        <button id="copy-cipher-btn" class="pgp-btn pgp-btn-secondary">
+          Copy to Clipboard
+        </button>
+      </div>
+    </div>
+    <div id="verify-panel" class="pgp-panel">
+      <div class="pgp-input-group">
+        <label for="signed-message">Signed PGP Cleartext</label>
+        <textarea
+          id="signed-message"
+          class="pgp-textarea"
+          placeholder="Paste the signed message block (e.g. starting with -----BEGIN PGP SIGNED MESSAGE-----) here..."
+        ></textarea>
+      </div>
+      <div class="pgp-button-row">
+        <button id="verify-btn" class="pgp-btn">Verify Signature</button>
+      </div>
+      <div id="verify-status" class="pgp-status"></div>
+      <div class="pgp-input-group" style="margin-top: 0.5rem;">
+        <label for="verified-text">Verified Message</label>
+        <textarea
+          id="verified-text"
+          class="pgp-textarea"
+          readonly
+          placeholder="Verified text content will appear here..."
+        ></textarea>
+      </div>
+      <div class="pgp-button-row">
+        <button id="copy-verified-btn" class="pgp-btn pgp-btn-secondary">
+          Copy Content
+        </button>
+      </div>
+    </div>
+  </div>
+
+  ### My public key
+  <div class="pgp-card">
+    <div id="key-badge" class="pgp-key-badge">Loading PGP public key...</div>
+    <div
+      id="key-fingerprint"
+      style="font-size: 0.75rem; color: var(--fg-muted-4); font-family: var(--font-monospace, monospace); margin-top: 0.5rem;"
+    >
+      Fetching public key metadata...
+    </div>
+    <div id="key-status" class="pgp-status info" style="margin-top: 0.75rem;">
+      Initializing Cryptographic modules...
+    </div>
+  </div>
+  This key is used with the above tooling. Feel free to copy it if you want to use it locally.
 </div>
 
 <script>
