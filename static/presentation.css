@@ -34,6 +34,47 @@ body.presentation-mode #presentation-mode-toggle {
     color: var(--accent-color, #9a9996);
 }
 
+@media (max-width: 480px) {
+    #site-nav {
+        margin-block-start: 0.5rem;
+    }
+
+    #site-nav nav {
+        padding: 0.375rem;
+    }
+
+    #site-nav nav ul {
+        gap: 0.125rem;
+    }
+
+    #site-nav nav ul > li:not(:has(.circle)) {
+        flex: 0 1 auto;
+    }
+
+    #site-nav nav a,
+    #site-nav nav summary {
+        padding: 0.625rem 0.625rem;
+    }
+
+    main {
+        margin-block-start: 1.75rem;
+    }
+
+    main > h1 {
+        font-size: clamp(2.25rem, 10vw, 2.75rem);
+    }
+
+    main > h1:first-child + p:has(> img.end) {
+        text-align: center;
+    }
+
+    main > h1:first-child + p > img.end {
+        float: none;
+        margin: 1rem auto 1.5rem;
+        width: min(70%, 15rem);
+    }
+}
+
 /* Dim all content children when presentation mode is active */
 body.presentation-mode article > *:not(#banner-container):not(#heading):not(#buttons-container):not(nav):not(hr):not(.active-element) {
     opacity: 0.2;
