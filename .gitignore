@@ -4,6 +4,9 @@ public/
 # Sass cache
 .sass-cache/
 
+# Node dependencies used by the Markdown formatter
+node_modules/
+
 # OS-specific files
 .DS_Store
 Thumbs.db

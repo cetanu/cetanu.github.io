@@ -1,0 +1,9 @@
+{
+  "scripts": {
+    "format:content": "prettier --write content/_index.md content/faq.md content/links/_index.md content/blog/03-linux_is_not_a_realtime_system.md content/blog/07-how_to_avoid_sharding_yourself.md"
+  },
+  "devDependencies": {
+    "prettier": "^3.9.10",
+    "prettier-plugin-markdown-html": "^1.6.1"
+  }
+}

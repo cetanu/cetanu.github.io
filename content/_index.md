@@ -23,3 +23,24 @@ feed](/atom.xml).
 You can see what content I plan to produce in [this kanban board](/schedule).
 Half of it is random things I'm interested in, ideas, suggestions from other
 people, and so on.
+
+---
+
+<p style="color: grey; text-align: center">
+  <sup
+    >If you find a ghost somewhere around the site, don't be afraid, it's a
+    fellow visitor
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="1em"
+      height="1em"
+      viewBox="0 0 8 8"
+      shape-rendering="crispEdges"
+      role="img"
+      aria-label="pixel ghost"
+      style="vertical-align: -0.15em"
+    >
+      <path fill="#f5c76b" d="M2 0h4v1h1v5H6V5H5v1H4V5H3v1H2V5H1V1h1z" />
+      <path fill="#704214" d="M2 2h1v1H2zm3 0h1v1H5z" /></svg
+  ></sup>
+</p>

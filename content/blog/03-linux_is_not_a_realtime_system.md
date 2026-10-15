@@ -66,8 +66,8 @@ their execution with one another to create the illusion of simultaneous
 progression. This is referred to as concurrency, as opposed to parallelism.
 
 <small>
-Concurrency comes from the Latin "con" (together) and "currere" (to run,
-literally, to move faster than walking).
+  Concurrency comes from the Latin "con" (together) and "currere" (to run,
+  literally, to move faster than walking).
 </small>
 
 Concurrency is great, especially when tasks have to wait for something to
@@ -78,8 +78,8 @@ The task itself can communicate to the scheduler that it should be paused to
 allow other tasks to progress. Often, a task will do this implicitly by
 executing a particular system call, such as `read()` or `sleep()`.
 
-However, the *scheduler* can also pause a task *without any cooperation from the
-task.*
+However, the _scheduler_ can also pause a task _without any cooperation from the
+task._
 
 {{ image(url="/img/preemption_meme_1.png", alt="Scheduler standing behind the
 application, about to ruin its day", no_hover=true) }}
@@ -89,7 +89,7 @@ application, about to ruin its day", no_hover=true) }}
 This particular style of multitasking on Linux is called preemptive
 multitasking. Tasks can be "preempted".
 
-Sounds interesting, but what does it mean? *What* is being preempted?
+Sounds interesting, but what does it mean? _What_ is being preempted?
 
 The current task's execution time is being preempted - cut short - so that a
 more important task can be run.
@@ -193,8 +193,8 @@ article about the TLB specifically.
 
 There are some tools out there which can be used to run tasks and measure interference, such as:
 
-* `cyclictest` can be used to measure kernel scheduling latency
-* `hwlatdetect` can be used to measure latency caused by NMIs 
+- `cyclictest` can be used to measure kernel scheduling latency
+- `hwlatdetect` can be used to measure latency caused by NMIs
 
 ## Conclusion
 

@@ -26,22 +26,22 @@ user accesses the correct database shard.
 {{ image(url="/img/cody.png", alt="screenshot of cody's video", no_hover=true) }}
 
 <small>
-Also, the diagramming tool he's using is cool and if anyone knows what it is -
-please tell me!
+  Also, the diagramming tool he's using is cool and if anyone knows what it is -
+  please tell me!
 </small>
 
 However, one thing stuck out to me that I wanted to intercept in order to
 provide advice on, based on my own real professional experience.
 
-
 ## What caught my attention
+
 Cody delivers on what I think is the point of his video - to outline the advantage of sharding.
 But there is an example for how to implement routing a tenant to the shards and
 this is what I'll be providing advice on, based on my professional experience.
 
 Cody describes a naive approach where you take some kind of tenant identifier
 and hash it, which gives you a deterministic key which maps to the shard that
-the tenant lives on. 
+the tenant lives on.
 
 He then rightly points out that if you pick this approach, as the number and
 size of tenants grows you've now made it harder to rebalance your shards, or
@@ -53,19 +53,20 @@ buckets" where instead of a hash being a 1:1 mapping between a tenant and a
 shard, you take the modulus of the hash which maps a range of tenants to a
 shard instead.
 
-
 ## Algorithmic Routing can be an Anti-Pattern
+
 These methods of routing tenants to shards aren't broken, but let's call them anti-patterns.
 
 First, let's talk about why hashing is an attractive option.
 
-* It's stateless
-* It's fast
-* It doesn't need a database lookup
+- It's stateless
+- It's fast
+- It doesn't need a database lookup
 
 But it leaves you open to **operational pain**, even with the use of virtual buckets.
 
 #### One tenant within a bucket can dwarf other tenants
+
 If we just assume that the Pareto principle will play out eventually, you're
 going to have one tenant which consumes 80% of a single shards capacity.
 
@@ -76,7 +77,8 @@ special-case to your hashing algorithm that lives on forever, and most likely
 grows, needing to be maintained by operators.
 
 #### No flexibility for isolation
-This is semi-related to the above, essentially,  if you wanted to have
+
+This is semi-related to the above, essentially, if you wanted to have
 different shards, like a "quarantine" shard for misbehaving tenants, or a "free
 tier/trial" shard, or an "important enterprise customer" shard with only 1
 tenant on it, you again have to special-case the algorithm.
@@ -86,6 +88,7 @@ Maybe they won't, but we can take care of this with very little operational
 friction as we'll see later.
 
 #### Rebalancing friction doesn't go away
+
 Cody does point out that even when you add new shards, you still might need to
 rebalance tenants, but you can maybe do this with some background process or
 lazy migration that writes to both shards at the same time.
@@ -96,7 +99,6 @@ has to take care of, perhaps after-hours or during scheduled downtime.
 Note: you _can_ mitigate this particular downside with [Consistent
 Hashing](https://en.wikipedia.org/wiki/Consistent_hashing) but the others are
 still unsolved.
-
 
 ## Use a Lookup Table for Tenant Routing
 {{ image(url="/img/lookup-table.png", alt="diagram of architecture that uses a lookup table", no_hover=true) }}
@@ -115,6 +117,7 @@ unavailable for any serious amount of time. It probably won't go under 3 nines
 of availability.
 
 #### Surgical Rebalancing
+
 Your rebalancing goes from a stressful situation of changing the algorithm,
 propagating it to your gateways and praying, to a 5 step process that an intern
 can execute without bringing the company down.
@@ -126,6 +129,7 @@ can execute without bringing the company down.
 5. Wait a week and delete the old copy
 
 #### Better Isolation
+
 Before, changing the way hashing works meant that you were changing the
 algorithm for _everyone_.
 
@@ -137,8 +141,8 @@ You also unlock the scenario discussed above where you can move your enterprise
 customers to their own shard, or throw the naughty tenants into quarantine so
 they don't annoy everyone else.
 
-
 ## Fives nines of availability? No, I said nine fives...
+
 If you've somehow reached the point where that lookup table is no longer
 sufficient (and you're still reading this blog? lol), or you just feel
 uncomfortable with having to make a lookup on every request to a single point

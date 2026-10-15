@@ -1,0 +1,3 @@
+# Markdown splits this open <div> at blank lines, leaving its closing tag
+# outside the HTML fragment that contains its opening tag.
+content/pgp.md
