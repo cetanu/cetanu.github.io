@@ -3,7 +3,7 @@
 
 #set document(title: "Vasilios Syrakis — CV", author: "Vasilios Syrakis")
 #set page(paper: "a4", margin: (x: 1.6cm, y: 1.4cm))
-#set text(font: ("Inter", "Helvetica Neue", "Helvetica", "Arial", "DejaVu Sans"), size: 9.5pt)
+#set text(font: ("ERSC Sans", "Inter", "Helvetica Neue", "Helvetica", "Arial", "DejaVu Sans"), size: 9.5pt)
 #set par(justify: false, leading: 0.55em)
 #set list(marker: [▪], indent: 0.3em, body-indent: 0.5em, spacing: 0.55em)
 

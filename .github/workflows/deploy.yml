@@ -27,6 +27,11 @@ jobs:
         with:
           tool: zola@0.22.0
 
+      - name: Install Inter font
+        run: |
+          sudo apt-get update
+          sudo apt-get install --yes fonts-inter
+
       - name: Install Typst
         uses: taiki-e/install-action@v2
         with:
