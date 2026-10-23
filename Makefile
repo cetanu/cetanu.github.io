@@ -37,5 +37,5 @@ serve:
 
 build:
 	zola build
-	typst compile content/cv.typ public/vasilios_syrakis_cv.pdf
+	typst compile --font-path fonts content/cv.typ public/vasilios_syrakis_cv.pdf
 
