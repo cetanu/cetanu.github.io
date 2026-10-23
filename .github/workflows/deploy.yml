@@ -30,7 +30,7 @@ jobs:
       - name: Install Typst
         uses: taiki-e/install-action@v2
         with:
-          tool: typst@0.15.1
+          tool: typst-cli@0.15.1
 
       - name: Build Zola site & inline images
         run: make build
