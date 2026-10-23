@@ -32,7 +32,7 @@
 
 // ── Header ──────────────────────────────────────────────────────────────
 #align(left)[
-  #text(size: 18pt, weight: "bold", tracking: 0.06em, fill: accent)[VASILIOS SYRAKIS]
+  #text(size: 18pt, weight: "bold", fill: accent)[VASILIOS SYRAKIS]
   #v(-0.5em)
   #show link: set text(fill: muted)
   #text(fill: muted)[
