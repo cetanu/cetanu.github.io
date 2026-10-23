@@ -37,4 +37,5 @@ serve:
 
 build:
 	zola build
+	typst compile content/cv.typ public/vasilios_syrakis_cv.pdf
 

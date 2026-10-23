@@ -27,6 +27,11 @@ jobs:
         with:
           tool: zola@0.22.0
 
+      - name: Install Typst
+        uses: taiki-e/install-action@v2
+        with:
+          tool: typst@0.15.1
+
       - name: Build Zola site & inline images
         run: make build
 
