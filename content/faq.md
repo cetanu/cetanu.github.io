@@ -350,10 +350,3 @@ Yes, I play games, 100% on Linux.
 </div>
 
 </details>
-
-<details>
-  <summary>What are those glasses you sometimes wear?</summary>
-
-Ra Optics - Sol [Daylight](/raoptics-daylight) & [Sunset](/raoptics-sunset)
-
-</details>
