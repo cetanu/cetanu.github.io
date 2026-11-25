@@ -6,10 +6,6 @@ title = "Links"
   main#main-content > h1:first-of-type {
     display: none;
   }
-  .linkspage-header {
-    text-align: center;
-    margin-bottom: 2rem;
-  }
   .linkspage-avatar {
     width: 120px;
     height: 120px;
@@ -25,15 +21,21 @@ title = "Links"
     color: var(--fg-muted-4);
     margin-top: 0.5rem;
   }
-  .linkspage-container {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
+  links-page {
+    display: block;
     max-width: 400px;
     margin: 2rem auto;
   }
+  links-page > ul {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    list-style: none;
+    padding-inline-start: 0;
+  }
   .linkspage-btn {
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     text-decoration: none !important;
@@ -43,6 +45,7 @@ title = "Links"
     padding: 1rem;
     color: var(--fg-color) !important;
     font-weight: 600;
+    text-align: center;
     box-shadow: var(--edge-highlight), var(--shadow);
     transition:
       transform var(--transition-longer),
@@ -56,10 +59,22 @@ title = "Links"
       var(--shadow-raised);
     border-color: var(--accent-color);
   }
+  .linkspage-heading {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+  .linkspage-caption {
+    display: block;
+    margin-top: 0.25rem;
+    color: var(--fg-muted-4);
+    font-size: 0.875rem;
+    font-weight: 400;
+  }
   .linkspage-icon {
+    flex-shrink: 0;
     width: 1.25rem;
     height: 1.25rem;
-    margin-right: 0.75rem;
     background-color: var(--fg-color);
     mask-size: contain;
     mask-repeat: no-repeat;
@@ -74,58 +89,64 @@ title = "Links"
   }
 </style>
 
-<div class="linkspage-header">
-  <img
-    src="https://github.com/cetanu.png"
-    alt="Vasilios Syrakis"
-    class="linkspage-avatar"
-  />
-  <h2 class="linkspage-title">Vasilios Syrakis</h2>
-  <p class="linkspage-subtitle">Senior Systems Engineer / SRE</p>
-</div>
-
 <links-page>
 
-- [![Twitch](/img/social/twitch.svg) Twitch](/twitch)
-- [![Kick](/img/social/kick.svg) Kick](/kick)
-- [![YouTube](/img/social/youtube.svg) YouTube](/youtube)
-- [![X](/img/social/x.svg) X](/x)
-- [![GitHub](/img/social/github.svg) GitHub](/github)
-- [![LinkedIn](/img/social/linkedin.svg) LinkedIn](/linkedin)
-- [![Discord](/img/social/discord.svg) Discord Community](/discord)
-- [![Content Schedule](/img/social/kanban.svg) Content Schedule](/schedule)
-- [![Merch](/img/social/shop.svg) Merch](/merch)
-- [![Keyboard](/img/social/keyboard.svg) "What keyboard do you use?"](/keyboard)
-- [40% off CodeCrafters!](/codecrafters)
+- {% link_button(title="YouTube", url="/youtube", icon="youtube") %}
+  Videos and stream VODs
+  {% end %}
+
+- {% link_button(title="X", url="/x", icon="x") %}
+  Where I mostly talk trash on the internet
+  {% end %}
+
+- {% link_button(title="Twitch", url="/twitch", icon="twitch") %}
+  If you prefer watching my stream on Twitch
+  {% end %}
+
+- {% link_button(title="Kick", url="/kick", icon="kick") %}
+  If you prefer watching my stream on Kick
+  {% end %}
+
+---
+
+- {% link_button(title="Content Schedule", url="/schedule", icon="kanban") %}
+  See what I’m working on and what’s coming up
+  {% end %}
+
+- {% link_button(title="Discord Community", url="/discord", icon="discord") %}
+  Get notified when I go live, join the conversation
+  {% end %}
+
+---
+
+- {% link_button(title="GitHub", url="/github", icon="github") %}
+  Browse my code and open-source projects
+  {% end %}
+
+- {% link_button(title="LinkedIn", url="/linkedin", icon="linkedin") %}
+  My work experience
+  {% end %}
+
+---
+
+- {% link_button(title="CodeCrafters (40% off)", url="/codecrafters") %}
+  Use my partner link for a huge discount
+  {% end %}
+
+- {% link_button(title="Nuphy Keyboard", url="/keyboard", icon="keyboard") %}
+  The mechanical keyboard I use
+  {% end %}
+
+- {% link_button(title="My Merchandise", url="/merch", icon="shop") %}
+  Good quality meme t-shirts
+  {% end %}
 
 </links-page>
 
 <script>
   class linkspage extends HTMLElement {
     connectedCallback() {
-      const list = this.querySelector("ul");
-      if (!list) return;
-
-      const links = Array.from(list.querySelectorAll("a"));
-      const container = document.createElement("div");
-      container.className = "linkspage-container";
-
-      links.forEach((link) => {
-        link.className = "linkspage-btn";
-
-        // Look for an image defined in the markdown link (e.g. ![alt](/img/social/icon.svg))
-        const img = link.querySelector("img");
-        if (img) {
-          const iconSrc = img.getAttribute("src");
-          const icon = document.createElement("span");
-          icon.className = "linkspage-icon";
-          icon.style.maskImage = `url(${iconSrc})`;
-          icon.style.webkitMaskImage = `url(${iconSrc})`;
-
-          // Replace the raw img with our themed span mask
-          link.replaceChild(icon, img);
-        }
-
+      this.querySelectorAll("ul a").forEach((link) => {
         if (link.getAttribute("href").startsWith("http")) {
           link.target = "_blank";
           link.rel = "noopener";
@@ -134,17 +155,12 @@ title = "Links"
         link.addEventListener("click", () => {
           if (typeof gtag === "function") {
             gtag("event", "social_link_click", {
-              link_name: link.textContent.trim(),
+              link_name: link.querySelector(".linkspage-label").textContent.trim(),
               link_url: link.href,
             });
           }
         });
-
-        container.appendChild(link);
       });
-
-      this.innerHTML = "";
-      this.appendChild(container);
     }
   }
   customElements.define("links-page", linkspage);

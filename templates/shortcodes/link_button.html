@@ -1,0 +1,9 @@
+<a class="linkspage-btn" href="{{ url }}">
+  <span class="linkspage-heading">
+    {% if icon %}
+      <span class="linkspage-icon" style="mask-image: url(/img/social/{{ icon }}.svg)" aria-hidden="true"></span>
+    {% endif %}
+    <span class="linkspage-label">{{ title }}</span>
+  </span>
+  <span class="linkspage-caption">{{ body | trim }}</span>
+</a>

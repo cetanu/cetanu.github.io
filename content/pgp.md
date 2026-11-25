@@ -1,4 +1,5 @@
 +++
+title = "Cryptography tools"
 description = "A client-side utility to encrypt messages for Vasilios Syrakis using his public PGP key, or verify digital signatures sent by him."
 +++
 
